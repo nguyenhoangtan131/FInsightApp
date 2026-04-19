@@ -1,0 +1,18 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/pages/index.html" },
+    { "source": "/index", "destination": "/pages/index.html" },
+    { "source": "/login", "destination": "/pages/login.html" },
+    { "source": "/signup", "destination": "/pages/signup.html" },
+    { "source": "/analysis", "destination": "/pages/analysis.html" },
+    { "source": "/news", "destination": "/pages/news.html" },
+    { "source": "/sector-charts", "destination": "/pages/sector-charts.html" },
+    { "source": "/detail-pillar", "destination": "/pages/detail-pillar.html" },
+    {
+      "source": "/sythensis-report",
+      "destination": "/pages/sythensis-report.html"
+    },
+    { "source": "/pages/:path*", "destination": "/pages/:path*" }
+  ]
+}
