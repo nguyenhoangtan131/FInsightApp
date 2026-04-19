@@ -7,6 +7,9 @@
     { "source": "/news", "destination": "/pages/news.html" },
     { "source": "/sector-charts", "destination": "/pages/sector-charts.html" },
     { "source": "/detail-pillar", "destination": "/pages/detail-pillar.html" },
-    { "source": "/sythensis-report", "destination": "/pages/sythensis-report.html" }
+    {
+      "source": "/sythensis-report",
+      "destination": "/pages/sythensis-report.html"
+    }
   ]
 }
