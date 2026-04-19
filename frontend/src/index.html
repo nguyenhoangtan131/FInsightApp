@@ -1,0 +1,616 @@
+<!doctype html>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FInsight Market Overview</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-container": "#006c71",
+              "surface-container-highest": "#31353c",
+              "on-background": "#dfe2eb",
+              "primary-container": "#00f5ff",
+              "inverse-on-surface": "#2d3137",
+              "tertiary-fixed-dim": "#d1bcff",
+              "surface-container": "#1c2026",
+              "surface-container-lowest": "#0a0e14",
+              surface: "#10141a",
+              "on-surface": "#dfe2eb",
+              "on-tertiary-fixed": "#23005b",
+              "on-surface-variant": "#b9caca",
+              "tertiary-fixed": "#e9ddff",
+              "primary-fixed-dim": "#00dce5",
+              "surface-container-low": "#181c22",
+              "on-secondary-fixed": "#221b00",
+              "on-primary-fixed": "#002021",
+              "secondary-container": "#ffdb3c",
+              primary: "#e9feff",
+              error: "#ffb4ab",
+              "inverse-surface": "#dfe2eb",
+              "secondary-fixed-dim": "#e9c400",
+              "tertiary-container": "#e5d7ff",
+              secondary: "#fff9ef",
+              "on-tertiary-container": "#751fff",
+              "surface-container-high": "#262a31",
+              "on-secondary": "#3a3000",
+              "on-error": "#690005",
+              background: "#10141a",
+              "surface-tint": "#00dce5",
+              "inverse-primary": "#00696e",
+              "on-secondary-fixed-variant": "#544600",
+              "surface-dim": "#10141a",
+              "on-primary-fixed-variant": "#004f53",
+              "error-container": "#93000a",
+              tertiary: "#fef8ff",
+              "on-tertiary": "#3c0090",
+              "on-primary": "#003739",
+              "outline-variant": "#3a494a",
+              "on-secondary-container": "#725f00",
+              "secondary-fixed": "#ffe16d",
+              "on-tertiary-fixed-variant": "#5700c9",
+              "on-error-container": "#ffdad6",
+              "surface-bright": "#353940",
+              "surface-variant": "#31353c",
+              "primary-fixed": "#63f7ff",
+              outline: "#849495",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            fontFamily: {
+              headline: ["Manrope"],
+              body: ["Inter"],
+              label: ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .glass-panel {
+        backdrop-filter: blur(16px);
+        background: rgba(24, 28, 34, 0.75);
+        border: 1px solid rgba(0, 245, 255, 0.1);
+      }
+      .neon-glow {
+        box-shadow:
+          0 0 15px rgba(0, 245, 255, 0.15),
+          inset 0 0 10px rgba(0, 245, 255, 0.05);
+      }
+      @keyframes pulse-cyan {
+        0%,
+        100% {
+          opacity: 0.6;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+      .animate-pulse-cyan {
+        animation: pulse-cyan 2s infinite;
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #31353c;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary"
+  >
+    <nav
+      class="fixed top-0 left-0 w-full z-50 bg-[#10141a]/80 backdrop-blur-xl flex justify-between items-center px-8 h-16 border-b border-outline-variant/10"
+    >
+      <div class="flex items-center gap-8">
+        <span
+          class="text-xl font-bold tracking-tighter text-[#00f5ff] font-headline"
+          >FInsight</span
+        >
+        <div class="hidden md:flex gap-6 items-center">
+          <a
+            class="text-[#00f5ff] border-b-2 border-[#00f5ff] pb-1 font-headline tracking-tight text-sm"
+            href="#"
+            >Markets</a
+          >
+          <a
+            class="text-[#dfe2eb] opacity-70 hover:text-[#00f5ff] transition-colors duration-300 font-headline tracking-tight text-sm"
+            href="news.html"
+            >News</a
+          >
+        </div>
+      </div>
+      <div class="flex items-center gap-4" id="authActions">
+        <a
+          class="text-sm font-label text-on-surface/80 hover:text-primary-container transition-colors duration-200"
+          href="login.html"
+          >Sign In</a
+        >
+        <a
+          class="px-5 py-2 bg-primary-container text-on-primary font-bold text-xs rounded-full hover:brightness-110 transition-all shadow-lg shadow-primary-container/10 font-headline tracking-wide uppercase"
+          href="signup.html"
+          >Sign Up</a
+        >
+      </div>
+    </nav>
+
+    <aside
+      class="md:flex fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-[#181c22] border-r border-outline-variant/10 flex flex-col py-6 z-40"
+    >
+      <div class="px-6 mb-8">
+        <h3
+          class="text-[#00f5ff] font-black font-headline tracking-widest text-[10px] uppercase mb-1"
+        >
+          FInsight Intelligence
+        </h3>
+        <p
+          class="text-[#dfe2eb]/60 font-headline text-[8px] uppercase tracking-[0.2em]"
+        >
+          The Kinetic Observatory
+        </p>
+      </div>
+      <nav class="flex-1 space-y-1">
+        <a
+          class="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#00f5ff]/10 to-transparent text-[#00f5ff] border-l-4 border-[#00f5ff]"
+          href="index.html"
+        >
+          <span
+            class="material-symbols-outlined"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >visibility</span
+          >
+          <span
+            class="font-headline uppercase tracking-widest text-[10px] font-bold"
+            >Observatory</span
+          >
+        </a>
+        <a
+          class="flex items-center gap-3 px-6 py-3 text-[#dfe2eb]/60 hover:bg-[#262a31] hover:text-[#00f5ff] transition-all"
+          href="analysis.html"
+        >
+          <span class="material-symbols-outlined">insights</span>
+          <span
+            class="font-headline uppercase tracking-widest text-[10px] font-bold"
+            >Analytics</span
+          >
+        </a>
+        <a
+          class="flex items-center gap-3 px-6 py-3 text-[#dfe2eb]/60 hover:bg-[#262a31] hover:text-[#00f5ff] transition-all"
+          href="sector-charts.html"
+        >
+          <span class="material-symbols-outlined">leaderboard</span>
+          <span
+            class="font-headline uppercase tracking-widest text-[10px] font-bold"
+            >Charts</span
+          >
+        </a>
+      </nav>
+      <div class="mt-auto">
+        <a
+          class="flex items-center gap-3 px-6 py-4 text-[#dfe2eb]/60 hover:text-[#00f5ff] transition-all border-t border-outline-variant/10"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-sm">help_outline</span>
+          <span
+            class="font-headline uppercase tracking-widest text-[10px] font-bold"
+            >Help Center</span
+          >
+        </a>
+      </div>
+    </aside>
+    <!-- Main Content -->
+    <main class="pt-24 pb-12 px-8 md:pl-72">
+      <!-- Header -->
+      <header
+        class="mb-10 flex flex-col md:flex-row justify-between items-end gap-6"
+      >
+        <div class="max-w-2xl">
+          <div class="flex items-center gap-2 mb-2">
+            <span
+              class="w-2 h-2 bg-primary-container rounded-full animate-pulse"
+            ></span>
+            <span
+              class="text-primary-container font-headline text-[10px] uppercase tracking-[0.2em] font-bold"
+              >Live Market Feed</span
+            >
+          </div>
+          <h1
+            class="text-4xl md:text-5xl font-extrabold font-headline tracking-tighter text-on-surface"
+          >
+            Market <span class="text-primary-container">Intelligence</span>
+          </h1>
+          <p
+            class="mt-4 text-on-surface-variant max-w-lg leading-relaxed text-sm"
+          >
+            Synthesizing global liquidity, sentiment vectors, and high-frequency
+            volatility across the kinetic observatory.
+          </p>
+        </div>
+        <div class="flex gap-4">
+          <div
+            class="bg-surface-container-low px-6 py-4 rounded-xl border border-outline-variant/10 text-right"
+          >
+            <p
+              class="text-[10px] uppercase tracking-widest text-on-surface-variant mb-1 font-bold"
+            >
+              Global SFI Index
+            </p>
+            <div class="flex items-center gap-2 justify-end">
+              <span
+                class="text-3xl font-black font-headline text-primary-container"
+                >84.2</span
+              >
+              <span
+                class="material-symbols-outlined text-primary-container text-xl"
+                >trending_up</span
+              >
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Sunburst Section -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+        <!-- Main Chart Container -->
+        <div
+          class="lg:col-span-8 bg-surface-container-low rounded-xl p-8 border border-outline-variant/10 relative overflow-hidden"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <h3 class="text-lg font-bold font-headline">
+                Structural Market Allocation
+              </h3>
+              <p
+                class="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold"
+              >
+                VN30 Deep-Layer Intelligence
+              </p>
+            </div>
+            <div
+              class="flex bg-surface-container-lowest border border-outline-variant/20 p-1 rounded-full"
+            >
+              <button
+                class="view-filter-btn px-4 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-widest bg-primary-container text-on-primary"
+                data-view="von"
+              >
+                Market Cap
+              </button>
+              <button
+                class="view-filter-btn px-4 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors"
+                data-view="giatri"
+              >
+                Volatility
+              </button>
+            </div>
+          </div>
+          <!-- Chart Div -->
+          <div class="w-full h-[520px]" id="sunburstChart"></div>
+        </div>
+        <!-- Dynamic Context Panel -->
+        <div
+          class="lg:col-span-4 flex flex-col gap-6"
+          id="right-panel-container"
+        >
+          <!-- Default state before click -->
+          <div
+            id="default-panel"
+            class="bg-surface-container-low rounded-xl p-6 border border-outline-variant/10 flex-1 flex flex-col items-center justify-center text-center opacity-80 h-[520px]"
+          >
+            <span
+              class="material-symbols-outlined text-[48px] text-on-surface-variant/40 mb-6"
+              >ads_click</span
+            >
+            <h3
+              class="text-base font-bold font-headline text-on-surface uppercase tracking-widest mb-3"
+            >
+              Select a Sector
+            </h3>
+            <p
+              class="text-sm text-on-surface-variant max-w-[220px] leading-relaxed"
+            >
+              Click any segment on the sunburst chart to explore detailed
+              intelligence and analytical vectors.
+            </p>
+          </div>
+
+          <!-- Active Action Panel (Hidden by default) -->
+          <div
+            id="action-panel"
+            class="hidden glass-panel rounded-xl border-l-2 border-primary-container p-6 w-full neon-glow shadow-[0_20px_40px_rgba(0,245,255,0.06)] relative overflow-hidden group"
+          >
+            <!-- Ambient background glow inside panel -->
+            <div
+              class="absolute -top-10 -right-10 w-32 h-32 bg-primary-container/10 rounded-full blur-2xl"
+            ></div>
+
+            <!-- Header -->
+            <div class="mb-4 relative z-10">
+              <h3
+                class="font-headline text-lg font-bold text-on-surface tracking-tight"
+              >
+                Sector Actions
+              </h3>
+              <p class="font-body text-[11px] text-on-surface-variant mt-1">
+                Select an analysis vector for
+                <span
+                  id="selected-sector-name"
+                  class="text-primary-container font-bold uppercase tracking-wide"
+                  >Banking</span
+                >.
+              </p>
+
+              <div
+                class="flex items-center gap-4 mt-4 bg-surface-container-highest/30 p-3 rounded-lg border border-outline-variant/10"
+              >
+                <div class="flex flex-col flex-1">
+                  <span
+                    class="font-label text-[9px] uppercase tracking-widest text-on-surface-variant mb-0.5"
+                    >Value</span
+                  >
+                  <span
+                    id="selected-sector-value"
+                    class="font-headline text-[13px] font-bold text-on-surface tracking-tight"
+                    >360T</span
+                  >
+                </div>
+                <div class="w-[1px] h-8 bg-outline-variant/30"></div>
+                <div class="flex flex-col flex-1 pl-2">
+                  <span
+                    class="font-label text-[9px] uppercase tracking-widest text-on-surface-variant mb-0.5"
+                    >Change</span
+                  >
+                  <span
+                    id="selected-sector-change"
+                    class="font-headline text-[13px] font-bold text-primary-container tracking-tight"
+                    >+2.5%</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-col gap-3 relative z-10 mt-6">
+              <button
+                onclick="window.location.href = 'sector-charts.html'"
+                class="w-full flex items-center justify-between p-3 rounded-lg bg-surface-container-highest/50 hover:bg-surface-container-highest border border-transparent hover:border-outline-variant/20 transition-all duration-200 group/btn"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-8 h-8 rounded-lg bg-surface flex items-center justify-center text-on-surface-variant group-hover/btn:text-primary-container transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >bar_chart</span
+                    >
+                  </div>
+                  <span
+                    class="font-headline text-sm font-semibold text-on-surface tracking-tight"
+                    >View Sector Charts</span
+                  >
+                </div>
+                <span
+                  class="material-symbols-outlined text-on-surface-variant/50 text-sm opacity-0 group-hover/btn:opacity-100 transition-opacity translate-x-[-4px] group-hover/btn:translate-x-0 duration-200"
+                  >arrow_forward</span
+                >
+              </button>
+
+              <button
+                onclick="window.location.href='analysis.html'"
+                class="w-full flex items-center justify-between p-3 rounded-lg bg-surface-container-highest/50 hover:bg-surface-container-highest border border-transparent hover:border-outline-variant/20 transition-all duration-200 group/btn cursor-pointer"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-8 h-8 rounded-lg bg-surface flex items-center justify-center text-on-surface-variant group-hover/btn:text-secondary-container transition-colors relative overflow-hidden"
+                  >
+                    <div
+                      class="absolute inset-0 bg-secondary-container/10 opacity-0 group-hover/btn:opacity-100 transition-opacity blur-sm"
+                    ></div>
+                    <span
+                      class="material-symbols-outlined text-[18px] relative z-10"
+                      >auto_awesome</span
+                    >
+                  </div>
+                  <span
+                    class="font-headline text-sm font-semibold text-on-surface tracking-tight"
+                    >Detailed AI Analysis</span
+                  >
+                </div>
+                <span
+                  class="material-symbols-outlined text-on-surface-variant/50 text-sm opacity-0 group-hover/btn:opacity-100 transition-opacity translate-x-[-4px] group-hover/btn:translate-x-0 duration-200"
+                  >arrow_forward</span
+                >
+              </button>
+            </div>
+
+            <!-- Footer Action -->
+            <div
+              class="mt-5 pt-4 border-t border-outline-variant/15 flex justify-end relative z-10"
+            >
+              <button
+                class="font-label text-xs font-medium text-on-surface-variant hover:text-primary-container transition-colors flex items-center gap-1"
+              >
+                <span class="material-symbols-outlined text-[14px]">tune</span>
+                Compare Segments
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Trending Intelligence -->
+      <section>
+        <div class="flex justify-between items-center mb-8">
+          <h2 class="text-2xl font-black font-headline tracking-tight">
+            Trending Intelligence
+          </h2>
+          <div
+            class="flex items-center gap-2 text-primary-container font-bold text-xs uppercase tracking-widest cursor-pointer hover:gap-3 transition-all"
+          >
+            <span>View Terminal Feed</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- News Card 1 (Large) -->
+          <div
+            class="lg:col-span-2 group relative h-[400px] rounded-2xl overflow-hidden cursor-pointer border border-outline-variant/10 shadow-2xl shadow-black/40"
+          >
+            <img
+              alt="Financial Market"
+              class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBemI5PBf5mWVD6YZQPQVp0wLSOVec5qd5ppt0itXciExF8cDeynXoTRlLI7_nVX-B6cOGK_ZGLI3I0IceeTg-EO6opGviPblh6Dod4Lx7BWYXr9QtKa-SJfoF7fDPMUp54Jt3ub9Lciu2VhyCgnbwlVBjh2amSKqwcfR3WlLJBnUMn68MF4lh3S2XwCsplQmE7oR70ujYEIS1yCK2U4AV6Yccmu6Hxi5r3s9GkKMbV0KojhPUafi940_uN7tVpTgBLN3ZXk3u6Dlc"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-surface via-surface/60 to-transparent"
+            ></div>
+            <div class="absolute top-6 left-6 flex gap-3">
+              <div
+                class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-1"
+              >
+                <span
+                  class="material-symbols-outlined text-[12px]"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >bolt</span
+                >
+                SFI 8.42
+              </div>
+              <div
+                class="bg-black/40 backdrop-blur-md text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/10"
+              >
+                Market Pulse
+              </div>
+            </div>
+            <div class="absolute bottom-8 left-8 right-8">
+              <div class="flex items-center gap-2 mb-3">
+                <div class="w-1.5 h-6 bg-primary-container rounded-full"></div>
+                <span
+                  class="text-primary-container font-bold text-[11px] uppercase tracking-[0.2em]"
+                  >Pillar: Tài chính</span
+                >
+              </div>
+              <h3
+                class="text-3xl font-bold font-headline leading-tight text-white mb-3 group-hover:text-primary-container transition-colors"
+              >
+                Global Liquidity Shifts Toward Emerging Frontier Currencies
+              </h3>
+              <p class="text-sm text-white/70 line-clamp-2 max-w-xl">
+                New cross-border transaction data suggests a 15.4% increase in
+                capital allocation towards the VN30 banking sector over the next
+                fiscal quarter.
+              </p>
+            </div>
+          </div>
+          <!-- News Card 2 (Standard) -->
+          <div
+            class="group relative h-[400px] rounded-2xl overflow-hidden cursor-pointer border border-outline-variant/10"
+          >
+            <img
+              alt="Tech AI Data"
+              class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6mkvIXPNwJTsdU2O-BXIeE_X9Nuhbs0yBcKOLsK8DvKxs54HmbTaTt3BwMGGuHCeMD5iIkQjDtjOwwLXS-NB7jX-NsrZCXcDutnxvyiWvI3U4NXR0y1NoEHTFJq5M1euvsYGajePoS-4NmGr-zUtErw0fy_96fPmzGtC5w-RM7edUutsQFrtOSbXUjfPbgvWpP-Ds2Pui8xS_NAthxEv9XJlMHDYxDf-ppP7T4VMCfyc95kWvkJAggBsSEFRNx7EmgnVNF--jFK8"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-surface via-surface/60 to-transparent"
+            ></div>
+            <div class="absolute top-6 left-6">
+              <div
+                class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest"
+              >
+                Analysis
+              </div>
+            </div>
+            <div class="absolute bottom-8 left-8 right-8">
+              <span
+                class="text-secondary-container font-bold text-[10px] uppercase tracking-[0.2em] mb-2 block"
+                >Pillar: Khác</span
+              >
+              <h3
+                class="text-xl font-bold font-headline leading-snug text-white mb-2 group-hover:text-secondary-container transition-colors"
+              >
+                Decentralized Infrastructure: The Rise of Sovereign Clouds
+              </h3>
+              <p class="text-xs text-white/60 line-clamp-3">
+                Evaluating the long-term impact of localization on technology
+                sector margins and cap-ex cycles.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- BottomNavBar (Mobile Only) -->
+    <nav
+      class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container/90 backdrop-blur-xl flex justify-around items-center h-16 border-t border-outline-variant/10 z-50"
+    >
+      <a
+        class="flex flex-col items-center gap-1 text-primary-container"
+        href="#"
+      >
+        <span
+          class="material-symbols-outlined text-2xl"
+          style="font-variation-settings: &quot;FILL&quot; 1"
+          >visibility</span
+        >
+        <span class="text-[8px] font-bold uppercase tracking-widest"
+          >Observe</span
+        >
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-on-surface-variant"
+        href="#"
+      >
+        <span class="material-symbols-outlined text-2xl">insights</span>
+        <span class="text-[8px] font-bold uppercase tracking-widest"
+          >Signals</span
+        >
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-on-surface-variant"
+        href="#"
+      >
+        <span class="material-symbols-outlined text-2xl">star</span>
+        <span class="text-[8px] font-bold uppercase tracking-widest"
+          >Saved</span
+        >
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-on-surface-variant"
+        href="#"
+      >
+        <span class="material-symbols-outlined text-2xl">account_circle</span>
+        <span class="text-[8px] font-bold uppercase tracking-widest"
+          >Profile</span
+        >
+      </a>
+    </nav>
+    <script src="../src/js/sunburst.js"></script>
+    <script src="../src/js/index-page.js"></script>
+    <script src="../src/js/auth.js"></script>
+  </body>
+</html>

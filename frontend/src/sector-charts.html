@@ -1,0 +1,955 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Kinetic Observatory - Intelligence</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              tertiary: "#fef8ff",
+              "on-background": "#dfe2eb",
+              "primary-fixed": "#63f7ff",
+              "tertiary-fixed-dim": "#d1bcff",
+              "surface-container-high": "#262a31",
+              surface: "#10141a",
+              "surface-container-low": "#181c22",
+              "on-primary-fixed": "#002021",
+              "secondary-fixed": "#ffe16d",
+              "on-error-container": "#ffdad6",
+              secondary: "#fff9ef",
+              "on-tertiary-fixed": "#23005b",
+              "on-primary": "#003739",
+              "inverse-primary": "#00696e",
+              "on-secondary-fixed-variant": "#544600",
+              background: "#10141a",
+              "inverse-on-surface": "#2d3137",
+              "error-container": "#93000a",
+              "tertiary-fixed": "#e9ddff",
+              "on-surface-variant": "#b9caca",
+              outline: "#849495",
+              "on-primary-fixed-variant": "#004f53",
+              "primary-container": "#00f5ff",
+              "on-secondary": "#3a3000",
+              "surface-container-lowest": "#0a0e14",
+              "on-secondary-container": "#725f00",
+              "surface-dim": "#10141a",
+              "on-primary-container": "#006c71",
+              "secondary-fixed-dim": "#e9c400",
+              "on-tertiary-fixed-variant": "#5700c9",
+              error: "#ffb4ab",
+              "surface-variant": "#31353c",
+              "surface-container": "#1c2026",
+              "on-error": "#690005",
+              "surface-bright": "#353940",
+              "tertiary-container": "#e5d7ff",
+              "on-tertiary": "#3c0090",
+              "inverse-surface": "#dfe2eb",
+              "surface-container-highest": "#31353c",
+              "outline-variant": "#3a494a",
+              primary: "#e9feff",
+              "on-secondary-fixed": "#221b00",
+              "surface-tint": "#00dce5",
+              "secondary-container": "#ffdb3c",
+              "on-surface": "#dfe2eb",
+              "on-tertiary-container": "#751fff",
+              "primary-fixed-dim": "#00dce5",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            spacing: {},
+            fontFamily: {
+              headline: ["Manrope"],
+              body: ["Inter"],
+              label: ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #10141a;
+        color: #dfe2eb;
+      }
+      .font-headline {
+        font-family: "Manrope", sans-serif;
+        letter-spacing: -0.02em;
+      }
+      .font-label {
+        font-family: "Inter", sans-serif;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #31353c;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #3a494a;
+      }
+
+      .neon-glow-primary {
+        filter: drop-shadow(0 0 8px rgba(0, 245, 255, 0.4));
+      }
+      .neon-glow-secondary {
+        filter: drop-shadow(0 0 8px rgba(255, 225, 109, 0.4));
+      }
+      .neon-glow-error {
+        filter: drop-shadow(0 0 8px rgba(255, 180, 171, 0.4));
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background min-h-screen flex flex-col md:flex-row overflow-x-hidden antialiased"
+  >
+    <nav
+      class="fixed top-0 left-0 w-full z-50 bg-[#10141a]/80 backdrop-blur-xl flex justify-between items-center px-8 h-16 border-b border-outline-variant/10"
+    >
+      <div class="flex items-center gap-8">
+        <a
+          href="index.html"
+          class="text-xl font-bold tracking-tighter text-[#00f5ff] font-headline"
+          >FInsight</a
+        >
+        <div class="hidden md:flex gap-6 items-center">
+          <a
+            class="text-[#00f5ff] border-b-2 border-[#00f5ff] pb-1 font-headline tracking-tight text-sm"
+            href="index.html"
+            >Markets</a
+          >
+          <a
+            class="text-[#dfe2eb] opacity-70 hover:text-[#00f5ff] transition-colors duration-300 font-headline tracking-tight text-sm"
+            href="news.html"
+            >News</a
+          >
+        </div>
+      </div>
+      <div class="flex items-center gap-4" id="authActions">
+        <a
+          class="text-sm font-label text-on-surface/80 hover:text-primary-container transition-colors duration-200"
+          href="login.html"
+          >Sign In</a
+        >
+        <a
+          class="px-5 py-2 bg-primary-container text-on-primary font-bold text-xs rounded-full hover:brightness-110 transition-all shadow-lg shadow-primary-container/10 font-headline tracking-wide uppercase"
+          href="signup.html"
+          >Sign Up</a
+        >
+      </div>
+    </nav>
+
+    <aside
+      class="hidden md:flex flex-col fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-[#181c22] border-r border-outline-variant/10 py-6 z-40"
+    >
+      <div class="px-6 mb-8">
+        <h3
+          class="text-[#00f5ff] font-black font-headline tracking-widest text-[10px] uppercase mb-1"
+        >
+          FInsight Intelligence
+        </h3>
+        <p
+          class="text-[#dfe2eb]/60 font-headline text-[8px] uppercase tracking-[0.2em]"
+        >
+          The Kinetic Observatory
+        </p>
+      </div>
+      <nav class="flex-1 space-y-1">
+        <a
+          class="flex items-center gap-3 px-6 py-3 text-[#dfe2eb]/60 hover:bg-[#262a31] hover:text-[#00f5ff] transition-all"
+          href="index.html"
+        >
+          <span class="material-symbols-outlined">visibility</span>
+          <span
+            class="font-headline uppercase tracking-widest text-[10px] font-bold"
+            >Observatory</span
+          >
+        </a>
+        <a
+          class="flex items-center gap-3 px-6 py-3 text-[#dfe2eb]/60 hover:bg-[#262a31] hover:text-[#00f5ff] transition-all"
+          href="analysis.html"
+        >
+          <span class="material-symbols-outlined">insights</span>
+          <span
+            class="font-headline uppercase tracking-widest text-[10px] font-bold"
+            >Analytics</span
+          >
+        </a>
+        <a
+          class="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#00f5ff]/10 to-transparent text-[#00f5ff] border-l-4 border-[#00f5ff]"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined drop-shadow-[0_0_8px_rgba(0,245,255,0.4)]"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >leaderboard</span
+          >
+          <span
+            class="font-headline uppercase tracking-widest text-[10px] font-bold"
+            >Charts</span
+          >
+        </a>
+      </nav>
+      <div class="mt-auto">
+        <a
+          class="flex items-center gap-3 px-6 py-4 text-[#dfe2eb]/60 hover:text-[#00f5ff] transition-all border-t border-outline-variant/10"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-sm">help_outline</span>
+          <span
+            class="font-headline uppercase tracking-widest text-[10px] font-bold"
+            >Help Center</span
+          >
+        </a>
+      </div>
+    </aside>
+
+    <main
+      class="flex-1 md:ml-64 pt-24 px-4 md:px-8 pb-24 md:pb-12 min-h-screen flex flex-col gap-8"
+    >
+      <header class="flex justify-between items-end mb-2">
+        <div>
+          <h2
+            class="font-headline text-3xl md:text-4xl font-bold text-primary-container mb-1 drop-shadow-[0_0_12px_rgba(0,245,255,0.2)]"
+          >
+            Market Intelligence
+          </h2>
+          <p
+            class="font-label text-xs text-on-surface-variant flex items-center gap-2"
+          >
+            <span
+              class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"
+            ></span>
+            Live SFI Analysis | Sync Status: Optimal
+          </p>
+        </div>
+        <div class="hidden md:flex gap-3">
+          <button
+            class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface px-4 py-2 rounded-md font-body text-sm font-medium transition-colors flex items-center gap-2 border border-outline-variant/20"
+          >
+            <span class="material-symbols-outlined text-sm">download</span>
+            Export Data
+          </button>
+        </div>
+      </header>
+
+      <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <div
+          class="lg:col-span-8 bg-surface-container-low/80 glass-panel rounded-xl p-6 ambient-glow flex flex-col relative overflow-hidden"
+        >
+          <div class="flex justify-between items-start mb-6">
+            <div>
+              <h2
+                class="font-headline font-bold text-lg text-on-surface tracking-tight"
+              >
+                SFI vs Price Divergence
+              </h2>
+              <p
+                class="text-on-surface-variant text-xs font-label uppercase tracking-widest mt-1"
+              >
+                Intraday Kinetics
+              </p>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex items-center gap-2">
+                <div
+                  class="w-3 h-0.5 bg-primary-container neon-glow-primary"
+                ></div>
+                <span class="text-xs font-label text-on-surface-variant"
+                  >SFI Index</span
+                >
+              </div>
+              <div class="flex items-center gap-2">
+                <div
+                  class="w-3 h-0.5 bg-secondary-fixed neon-glow-secondary"
+                ></div>
+                <span class="text-xs font-label text-on-surface-variant"
+                  >Market Price</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="relative w-full h-[300px] mt-auto">
+            <div
+              class="absolute inset-y-0 left-[30%] w-12 bg-primary-container/5 blur-xl"
+            ></div>
+            <div
+              class="absolute inset-y-0 left-[75%] w-8 bg-primary-container/5 blur-xl"
+            ></div>
+            <svg
+              class="w-full h-full overflow-visible"
+              preserveaspectratio="none"
+              viewbox="0 0 1000 300"
+            >
+              <line
+                class="stroke-surface-variant stroke-[2px]"
+                x1="0"
+                x2="1000"
+                y1="280"
+                y2="280"
+              ></line>
+              <path
+                class="stroke-primary-container stroke-[3px] fill-none neon-glow-primary"
+                d="M 0,150 Q 150,180 300,100 T 600,120 T 800,50 T 1000,80"
+              ></path>
+              <path
+                class="stroke-secondary-fixed stroke-[2px] fill-none neon-glow-secondary"
+                d="M 0,200 Q 200,190 350,220 T 700,180 T 900,150 T 1000,160"
+                stroke-dasharray="4 4"
+              ></path>
+              <circle
+                class="fill-primary-container"
+                cx="300"
+                cy="100"
+                r="4"
+              ></circle>
+              <circle
+                class="fill-primary-container"
+                cx="800"
+                cy="50"
+                r="4"
+              ></circle>
+              <text
+                class="fill-primary-container font-label text-[10px]"
+                text-anchor="middle"
+                x="300"
+                y="80"
+              >
+                ALERT
+              </text>
+              <text
+                class="fill-primary-container font-label text-[10px]"
+                text-anchor="middle"
+                x="800"
+                y="30"
+              >
+                HIGH CONF
+              </text>
+            </svg>
+            <div
+              class="absolute left-0 top-0 h-[280px] flex flex-col justify-between text-[10px] font-label text-on-surface-variant -ml-6"
+            >
+              <span>1.0</span><span>0.8</span><span>0.5</span><span>0.2</span
+              ><span>0.0</span>
+            </div>
+            <div
+              class="absolute right-0 top-0 h-[280px] flex flex-col justify-between text-[10px] font-label text-on-surface-variant -mr-8 text-right"
+            >
+              <span>1500</span><span>1375</span><span>1250</span
+              ><span>1125</span><span>1000</span>
+            </div>
+            <div
+              class="absolute bottom-0 left-0 w-full flex justify-between text-[10px] font-label text-on-surface-variant pt-2 px-2"
+            >
+              <span>9:00</span><span>10:00</span><span>11:30</span
+              ><span>13:00</span><span>14:00</span><span>14:45</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="lg:col-span-4 bg-surface-container-low rounded-xl p-6 relative group border-none shadow-[0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-xl flex flex-col justify-between"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="font-headline text-lg font-bold text-on-surface">
+              Market Sentiment
+            </h3>
+            <span class="material-symbols-outlined text-on-surface-variant"
+              >speed</span
+            >
+          </div>
+          <div
+            class="flex-1 flex flex-col items-center justify-center relative py-6"
+          >
+            <div
+              class="relative w-48 h-48 rounded-full border-[12px] border-surface-container-lowest border-t-primary-container border-r-primary-container transform rotate-45 flex items-center justify-center shadow-[inset_0_0_30px_rgba(0,0,0,0.5)]"
+            >
+              <div
+                class="absolute inset-0 rounded-full border-[2px] border-primary-container/20 m-2"
+              ></div>
+
+              <div
+                class="transform -rotate-45 flex flex-col items-center text-center"
+              >
+                <span
+                  class="font-headline text-5xl font-black text-primary-container drop-shadow-[0_0_12px_rgba(0,245,255,0.4)]"
+                  >78</span
+                >
+                <span
+                  class="font-label text-[10px] text-on-surface-variant mt-1 tracking-widest"
+                  >BULLISH SFI</span
+                >
+              </div>
+            </div>
+
+            <div class="mt-8 grid grid-cols-2 gap-4 w-full">
+              <div
+                class="bg-surface-container-high rounded-lg p-3 text-center border border-outline-variant/10"
+              >
+                <p class="font-label text-[9px] text-on-surface-variant mb-1">
+                  MOMENTUM
+                </p>
+                <p
+                  class="font-headline text-lg font-bold text-primary-fixed flex items-center justify-center gap-1"
+                >
+                  <span class="material-symbols-outlined text-sm"
+                    >trending_up</span
+                  >
+                  +12.4%
+                </p>
+              </div>
+              <div
+                class="bg-surface-container-high rounded-lg p-3 text-center border border-outline-variant/10"
+              >
+                <p class="font-label text-[9px] text-on-surface-variant mb-1">
+                  VOLATILITY
+                </p>
+                <p
+                  class="font-headline text-lg font-bold text-secondary-fixed flex items-center justify-center gap-1"
+                >
+                  <span class="material-symbols-outlined text-sm"
+                    >swap_vert</span
+                  >
+                  High
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <div
+          class="lg:col-span-8 bg-surface-container-low rounded-xl p-6 relative overflow-hidden group shadow-[0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-xl border-none"
+        >
+          <div
+            class="absolute top-0 right-0 w-64 h-64 bg-primary-container/5 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2"
+          ></div>
+          <div class="flex justify-between items-start mb-6 relative z-10">
+            <div>
+              <h3 class="font-headline text-lg font-bold text-on-surface">
+                Index Share Analysis
+              </h3>
+              <p class="font-body text-sm text-on-surface-variant mt-1">
+                Index Share Analysis (Valuation in Quadrillion VND)
+              </p>
+            </div>
+            <div class="flex gap-2">
+              <button
+                class="bg-surface-container-high text-on-surface px-3 py-1 rounded text-xs font-medium hover:bg-surface-container-highest transition-colors"
+              >
+                1W
+              </button>
+              <button
+                class="bg-primary-container/20 text-primary-container border border-primary-container/30 px-3 py-1 rounded text-xs font-bold shadow-[0_0_10px_rgba(0,245,255,0.1)]"
+              >
+                1M
+              </button>
+              <button
+                class="bg-surface-container-high text-on-surface px-3 py-1 rounded text-xs font-medium hover:bg-surface-container-highest transition-colors"
+              >
+                YTD
+              </button>
+            </div>
+          </div>
+
+          <div class="flex relative h-[250px] z-10 mt-4">
+            <div
+              class="flex flex-col justify-between text-[10px] font-label text-on-surface-variant pr-4 py-2 border-r border-outline-variant/20 h-full"
+            >
+              <span>100%</span>
+              <span>75%</span>
+              <span>50%</span>
+              <span>25%</span>
+              <span>0%</span>
+            </div>
+
+            <div
+              class="flex-1 flex items-end justify-between gap-2 px-4 h-full relative"
+            >
+              <div
+                class="absolute inset-0 flex flex-col justify-between py-2 pointer-events-none"
+              >
+                <div class="w-full h-px bg-outline-variant/10"></div>
+                <div class="w-full h-px bg-outline-variant/10"></div>
+                <div class="w-full h-px bg-outline-variant/10"></div>
+                <div class="w-full h-px bg-outline-variant/10"></div>
+                <div class="w-full h-px bg-outline-variant/10"></div>
+              </div>
+
+              <div
+                class="flex-1 bg-gradient-to-t from-primary-container/20 to-transparent rounded-t h-4/5 group-hover:from-primary-container/30 transition-all duration-500 relative z-10"
+              >
+                <div
+                  class="absolute top-0 left-0 w-full h-[2px] bg-primary-container"
+                ></div>
+              </div>
+              <div
+                class="flex-1 bg-gradient-to-t from-primary-container/10 to-transparent rounded-t h-3/5 relative z-10"
+              >
+                <div
+                  class="absolute top-0 left-0 w-full h-[2px] bg-primary-container/60"
+                ></div>
+              </div>
+              <div
+                class="flex-1 bg-gradient-to-t from-secondary-container/20 to-transparent rounded-t h-full relative z-10"
+              >
+                <div
+                  class="absolute top-0 left-0 w-full h-[2px] bg-secondary-container shadow-[0_0_15px_rgba(255,219,60,0.5)]"
+                ></div>
+              </div>
+              <div
+                class="flex-1 bg-gradient-to-t from-primary-container/15 to-transparent rounded-t h-2/5 relative z-10"
+              >
+                <div
+                  class="absolute top-0 left-0 w-full h-[2px] bg-primary-container/80"
+                ></div>
+              </div>
+              <div
+                class="flex-1 bg-gradient-to-t from-primary-container/10 to-transparent rounded-t h-3/4 relative z-10"
+              >
+                <div
+                  class="absolute top-0 left-0 w-full h-[2px] bg-primary-container/40"
+                ></div>
+              </div>
+              <div
+                class="flex-1 bg-gradient-to-t from-primary-container/5 to-transparent rounded-t h-1/2 relative z-10"
+              >
+                <div
+                  class="absolute top-0 left-0 w-full h-[2px] bg-primary-container/20"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="flex justify-between pl-12 pr-4 mt-2 text-[9px] font-label text-on-surface-variant uppercase tracking-widest text-center"
+          >
+            <span class="flex-1 text-center" title="Tài chính">FIN</span>
+            <span class="flex-1 text-center" title="Công nghệ">TECH</span>
+            <span class="flex-1 text-center" title="Năng lượng">ENRG</span>
+            <span class="flex-1 text-center" title="Y tế">HLTH</span>
+            <span class="flex-1 text-center" title="Tiêu dùng">CONS</span>
+            <span class="flex-1 text-center" title="Sản xuất">INDU</span>
+          </div>
+        </div>
+
+        <div
+          class="lg:col-span-4 bg-surface-container-low rounded-xl p-6 flex flex-col shadow-[0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-xl border-none"
+        >
+          <h3 class="font-headline text-lg font-bold text-on-surface mb-1">
+            Market Dominance
+          </h3>
+          <p class="font-body text-xs text-on-surface-variant mb-8">
+            Asset Class Concentration
+          </p>
+          <div class="flex-1 flex items-center justify-center relative">
+            <div
+              class="w-40 h-40 rounded-full border-[8px] border-surface-container-highest flex items-center justify-center relative"
+            >
+              <div
+                class="absolute inset-0 rounded-full border-[8px] border-primary-container border-t-transparent border-l-transparent -rotate-45 neon-glow-primary"
+              ></div>
+              <div class="text-center">
+                <span
+                  class="block font-headline text-3xl font-black leading-none text-on-surface"
+                  >64%</span
+                >
+                <span
+                  class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest mt-1"
+                  >Dominance</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="space-y-3 mt-8 font-body">
+            <div class="flex justify-between items-center text-xs">
+              <div class="flex items-center gap-2">
+                <span
+                  class="w-2 h-2 rounded-full bg-primary-container neon-glow-primary"
+                ></span>
+                <span class="text-on-surface">Equities</span>
+              </div>
+              <span class="font-bold text-on-surface">42.8%</span>
+            </div>
+            <div class="flex justify-between items-center text-xs">
+              <div class="flex items-center gap-2">
+                <span
+                  class="w-2 h-2 rounded-full bg-secondary-fixed neon-glow-secondary"
+                ></span>
+                <span class="text-on-surface">Fixed Income</span>
+              </div>
+              <span class="font-bold text-on-surface">21.4%</span>
+            </div>
+            <div class="flex justify-between items-center text-xs opacity-50">
+              <div class="flex items-center gap-2">
+                <span
+                  class="w-2 h-2 rounded-full bg-surface-container-highest"
+                ></span>
+                <span class="text-on-surface">Commodities</span>
+              </div>
+              <span class="font-bold text-on-surface">15.2%</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <div
+          class="lg:col-span-12 bg-surface-container-low rounded-xl p-6 relative overflow-hidden group shadow-[0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-xl border-none"
+        >
+          <div
+            class="absolute top-0 right-0 w-64 h-64 bg-primary-container/5 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2"
+          ></div>
+          <div class="flex justify-between items-start mb-6 relative z-10">
+            <div>
+              <h3 class="font-headline text-lg font-bold text-on-surface">
+                Market Cap by Sector
+              </h3>
+              <p class="font-body text-sm text-on-surface-variant mt-1">
+                Index Share Analysis (Valuation in Quadrillion VND)
+              </p>
+            </div>
+            <div class="flex gap-2">
+              <button
+                class="bg-surface-container-high text-on-surface px-3 py-1 rounded text-xs font-medium hover:bg-surface-container-highest transition-colors"
+              >
+                1W
+              </button>
+              <button
+                class="bg-primary-container/20 text-primary-container border border-primary-container/30 px-3 py-1 rounded text-xs font-bold shadow-[0_0_10px_rgba(0,245,255,0.1)]"
+              >
+                1M
+              </button>
+              <button
+                class="bg-surface-container-high text-on-surface px-3 py-1 rounded text-xs font-medium hover:bg-surface-container-highest transition-colors"
+              >
+                YTD
+              </button>
+            </div>
+          </div>
+
+          <div class="flex relative h-[250px] z-10 mt-4">
+            <div
+              class="flex flex-col justify-between text-[10px] font-label text-on-surface-variant pr-4 py-2 border-r border-outline-variant/20 h-full"
+            >
+              <span>100%</span>
+              <span>75%</span>
+              <span>50%</span>
+              <span>25%</span>
+              <span>0%</span>
+            </div>
+
+            <div
+              class="flex-1 flex items-end justify-between gap-2 px-4 h-full relative"
+            >
+              <div
+                class="absolute inset-0 flex flex-col justify-between py-2 pointer-events-none"
+              >
+                <div class="w-full h-px bg-outline-variant/10"></div>
+                <div class="w-full h-px bg-outline-variant/10"></div>
+                <div class="w-full h-px bg-outline-variant/10"></div>
+                <div class="w-full h-px bg-outline-variant/10"></div>
+                <div class="w-full h-px bg-outline-variant/10"></div>
+              </div>
+
+              <div
+                class="flex-1 bg-gradient-to-t from-primary-fixed/20 to-transparent rounded-t h-[40%] relative group-hover:from-primary-fixed/30 transition-all duration-500 z-10"
+              >
+                <div
+                  class="absolute top-0 left-0 w-full h-[2px] bg-primary-fixed neon-glow-primary"
+                ></div>
+              </div>
+
+              <div
+                class="flex-1 bg-gradient-to-t from-primary-fixed/15 to-transparent rounded-t h-[25%] relative z-10"
+              >
+                <div
+                  class="absolute top-0 left-0 w-full h-[2px] bg-primary-fixed/80"
+                ></div>
+              </div>
+
+              <div
+                class="flex-1 bg-gradient-to-t from-secondary-fixed/20 to-transparent rounded-t h-[20%] relative z-10"
+              >
+                <div
+                  class="absolute top-0 left-0 w-full h-[2px] bg-secondary-fixed neon-glow-secondary"
+                ></div>
+              </div>
+
+              <div
+                class="flex-1 bg-gradient-to-t from-primary-fixed/10 to-transparent rounded-t h-[15%] relative z-10"
+              >
+                <div
+                  class="absolute top-0 left-0 w-full h-[2px] bg-primary-fixed/60"
+                ></div>
+              </div>
+
+              <div
+                class="flex-1 bg-gradient-to-t from-primary-fixed/5 to-transparent rounded-t h-[10%] relative z-10"
+              >
+                <div
+                  class="absolute top-0 left-0 w-full h-[2px] bg-primary-fixed/40"
+                ></div>
+              </div>
+
+              <div
+                class="flex-1 bg-gradient-to-t from-primary-fixed/5 to-transparent rounded-t h-[8%] relative z-10"
+              >
+                <div
+                  class="absolute top-0 left-0 w-full h-[2px] bg-primary-fixed/30"
+                ></div>
+              </div>
+
+              <div
+                class="flex-1 bg-gradient-to-t from-surface-variant/20 to-transparent rounded-t h-[5%] relative z-10"
+              >
+                <div
+                  class="absolute top-0 left-0 w-full h-[2px] bg-outline-variant"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="flex justify-between pl-12 pr-4 mt-2 text-[9px] font-label text-on-surface-variant uppercase tracking-widest text-center"
+          >
+            <span class="flex-1 text-center" title="Tài chính">FIN</span>
+            <span class="flex-1 text-center" title="Công nghệ">TECH</span>
+            <span class="flex-1 text-center" title="Năng lượng">ENRG</span>
+            <span class="flex-1 text-center" title="Y tế">HLTH</span>
+            <span class="flex-1 text-center" title="Tiêu dùng">CONS</span>
+            <span class="flex-1 text-center" title="Công nghiệp">INDU</span>
+            <span class="flex-1 text-center" title="Others">OTHERS</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="flex justify-between items-center mb-6">
+          <h3
+            class="font-headline text-xl font-bold text-on-surface flex items-center gap-2"
+          >
+            <span class="material-symbols-outlined text-primary-container"
+              >auto_awesome</span
+            >
+            Trending Intelligence
+          </h3>
+          <a
+            class="text-xs font-bold text-primary-container hover:text-primary-fixed flex items-center gap-1 transition-colors"
+            href="#"
+          >
+            View All Intel
+            <span class="material-symbols-outlined text-[14px]"
+              >arrow_forward</span
+            >
+          </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <article
+            class="bg-surface-container-high rounded-lg overflow-hidden group cursor-pointer hover:bg-surface-container-highest transition-all duration-300 shadow-md hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-transparent hover:border-outline-variant/30 flex flex-col h-full"
+          >
+            <div class="relative h-40 overflow-hidden">
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-surface-container-highest to-transparent z-10"
+              ></div>
+              <img
+                alt="Abstract visualization of massive data streams converging on a central glowing core"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80"
+                data-alt="Abstract visualization of massive data streams converging on a central glowing cyan core, high tech, dark background, cinematic lighting"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGQUjmqT1_6MJNQSfAhlonRcjrymoTHPglnxeXCSKuaRZFgPyAvz6nnafRICjfzitj9RADyavDqNNVj7WMMPvhpryE7-WFiRIjncpe7SqVPVdpN7yhsqqdT5SRvEXa_K7_F9eavJF1b-4vk_vAhnhLlTvTExU4l5AobYR_VywLFZ_zkzV4SXH1GYMvvQYsSkH_yburm_T6n0z5EiIxnJAGAPaUGY2jE--4_tEgFaTMIv0YovUyeOvp3GJ1vhl3Y5br_ZBRx8dCloU"
+              />
+              <div
+                class="absolute top-3 left-3 z-20 bg-surface-container/80 backdrop-blur-md px-2 py-1 rounded text-[10px] font-label text-primary-fixed border border-primary-fixed/30 flex items-center gap-1"
+              >
+                <span
+                  class="w-1.5 h-1.5 rounded-full bg-primary-fixed animate-pulse"
+                ></span>
+                SFI: 84
+              </div>
+            </div>
+            <div class="p-5 flex-1 flex flex-col">
+              <div
+                class="flex items-center gap-2 mb-2 text-[10px] font-label text-on-surface-variant"
+              >
+                <span>MACRO</span> • <span>2H AGO</span>
+              </div>
+              <h4
+                class="font-headline text-base font-bold text-on-surface leading-tight mb-3 group-hover:text-primary-container transition-colors"
+              >
+                Global Liquidity Injection Signals Risk-On Environment for Tech
+                Sector
+              </h4>
+              <p
+                class="font-body text-sm text-on-surface-variant line-clamp-2 mt-auto"
+              >
+                Institutional flows indicate a massive rotation into high-beta
+                assets following recent central bank policy shifts.
+              </p>
+            </div>
+          </article>
+
+          <article
+            class="bg-surface-container-high rounded-lg overflow-hidden group cursor-pointer hover:bg-surface-container-highest transition-all duration-300 shadow-md hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-transparent hover:border-outline-variant/30 flex flex-col h-full"
+          >
+            <div class="relative h-40 overflow-hidden">
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-surface-container-highest to-transparent z-10"
+              ></div>
+              <img
+                alt="Golden Bitcoin physical coin sitting on top of glowing server racks"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80"
+                data-alt="Golden Bitcoin physical coin sitting on top of glowing server racks in a dark data center, shallow depth of field, neon accents"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-qpkZsE_pC5zJXCKU3zx7spuuJ5pyefjKJssYqycrsMR_KRsjZTfn3dOxcR-cdcRPBk8qoaJznMFk9uXY9pcBsKjBTkNUIUdmn4thFdggoBT8q4uJX1596jvcFQeDZSTCuxmR8wOnTCkW_KyMyUcze4vk8l0WhP-NfpbZWAv_XUAaOzdbLl65Mh_1Zk1LylAdeY5rTad4XR48mK0gZrzImoTxm_SwkVoJ0iWMDvfzXiUESoff4AzqBHqacCVbzoRk-5dU09QuQSM"
+              />
+              <div
+                class="absolute top-3 left-3 z-20 bg-surface-container/80 backdrop-blur-md px-2 py-1 rounded text-[10px] font-label text-secondary-fixed border border-secondary-fixed/30 flex items-center gap-1"
+              >
+                <span
+                  class="w-1.5 h-1.5 rounded-full bg-secondary-fixed animate-pulse"
+                ></span>
+                SFI: 91
+              </div>
+            </div>
+            <div class="p-5 flex-1 flex flex-col">
+              <div
+                class="flex items-center gap-2 mb-2 text-[10px] font-label text-on-surface-variant"
+              >
+                <span>CRYPTO</span> • <span>4H AGO</span>
+              </div>
+              <h4
+                class="font-headline text-base font-bold text-on-surface leading-tight mb-3 group-hover:text-secondary-fixed transition-colors"
+              >
+                On-Chain Analytics Reveal Historic Accumulation Phase
+              </h4>
+              <p
+                class="font-body text-sm text-on-surface-variant line-clamp-2 mt-auto"
+              >
+                Wallets holding over 1K BTC have increased balances by 4.2% over
+                the last week, ignoring short-term price volatility.
+              </p>
+            </div>
+          </article>
+
+          <article
+            class="bg-surface-container-high rounded-lg overflow-hidden group cursor-pointer hover:bg-surface-container-highest transition-all duration-300 shadow-md hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-transparent hover:border-outline-variant/30 flex flex-col h-full md:col-span-2 xl:col-span-1"
+          >
+            <div class="relative h-40 overflow-hidden">
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-surface-container-highest to-transparent z-10"
+              ></div>
+              <img
+                alt="Satellite view of earth at night showing glowing city lights connected by network lines"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80"
+                data-alt="Satellite view of earth at night showing glowing city lights with overlaid digital network lines connecting continents, deep space background"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoviRAMqs0TTqpisLtlhyHeUcWpPkQn8KUjxHc7N_Tpo_AJ_txjQLTD_qOD-cn60maBPgVLu5BtzY9cA28h3DtBIDVieLc3CGOloSF53dxmx8eMaDZBz1hpXZcsAkiOuR6PDlYunTIqGlQnegsUZwkEBJTbCSK_SnviUIRZ-1A-pHj78kyPqLH9y0mir_LElKtDldAeZ5KyuxBiZCRmP0jVzsO5Zsjpp4eM_wdJs4e2TU6NVBcNnBMNMKVtU5XtzYRnUbz3eflSLY"
+              />
+              <div
+                class="absolute top-3 left-3 z-20 bg-error-container/80 backdrop-blur-md px-2 py-1 rounded text-[10px] font-label text-error border border-error/30 flex items-center gap-1"
+              >
+                <span class="material-symbols-outlined text-[12px]"
+                  >trending_down</span
+                >
+                SFI: 22
+              </div>
+            </div>
+            <div class="p-5 flex-1 flex flex-col">
+              <div
+                class="flex items-center gap-2 mb-2 text-[10px] font-label text-on-surface-variant"
+              >
+                <span>COMMODITIES</span> • <span>6H AGO</span>
+              </div>
+              <h4
+                class="font-headline text-base font-bold text-on-surface leading-tight mb-3 group-hover:text-error transition-colors"
+              >
+                Supply Chain Disruptions Deepen in Key Manufacturing Hubs
+              </h4>
+              <p
+                class="font-body text-sm text-on-surface-variant line-clamp-2 mt-auto"
+              >
+                Kinetic sentiment index for industrial metals plummets as
+                shipping bottlenecks persist longer than anticipated by major
+                forecasters.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <nav
+      class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container/90 backdrop-blur-xl flex justify-around items-center h-16 border-t border-outline-variant/10 z-50"
+    >
+      <a
+        class="flex flex-col items-center gap-1 text-primary-container"
+        href="#"
+      >
+        <span
+          class="material-symbols-outlined text-2xl"
+          style="font-variation-settings: &quot;FILL&quot; 1"
+          >visibility</span
+        >
+        <span class="text-[8px] font-bold uppercase tracking-widest"
+          >Observe</span
+        >
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-on-surface-variant"
+        href="#"
+      >
+        <span class="material-symbols-outlined text-2xl">insights</span>
+        <span class="text-[8px] font-bold uppercase tracking-widest"
+          >Signals</span
+        >
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-on-surface-variant"
+        href="#"
+      >
+        <span class="material-symbols-outlined text-2xl">star</span>
+        <span class="text-[8px] font-bold uppercase tracking-widest"
+          >Saved</span
+        >
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-on-surface-variant"
+        href="#"
+      >
+        <span class="material-symbols-outlined text-2xl">account_circle</span>
+        <span class="text-[8px] font-bold uppercase tracking-widest"
+          >Profile</span
+        >
+      </a>
+    </nav>
+    <script src="js/auth.js"></script>
+  </body>
+</html>

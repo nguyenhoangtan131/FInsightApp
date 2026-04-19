@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html class="dark" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FInsight - Strategic Analysis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#10141a",
+                        "primary-fixed": "#63f7ff",
+                        "inverse-surface": "#dfe2eb",
+                        "tertiary-fixed": "#e9ddff",
+                        "on-tertiary": "#3c0090",
+                        "on-tertiary-container": "#751fff",
+                        "on-error": "#690005",
+                        "on-primary-container": "#006c71",
+                        "outline-variant": "#3a494a",
+                        "on-secondary-fixed-variant": "#544600",
+                        "outline": "#849495",
+                        "tertiary-container": "#e5d7ff",
+                        "surface-container-lowest": "#0a0e14",
+                        "on-surface": "#dfe2eb",
+                        "on-background": "#dfe2eb",
+                        "surface-container-low": "#181c22",
+                        "secondary-container": "#ffdb3c",
+                        "secondary-fixed": "#ffe16d",
+                        "error-container": "#93000a",
+                        "on-secondary": "#3a3000",
+                        "surface-tint": "#00dce5",
+                        "primary-container": "#00f5ff",
+                        "inverse-primary": "#00696e",
+                        "on-secondary-fixed": "#221b00",
+                        "on-tertiary-fixed-variant": "#5700c9",
+                        "surface-variant": "#31353c",
+                        "surface-container-highest": "#31353c",
+                        "surface": "#10141a",
+                        "tertiary-fixed-dim": "#d1bcff",
+                        "on-primary-fixed-variant": "#004f53",
+                        "on-primary-fixed": "#002021",
+                        "background": "#10141a",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#fef8ff",
+                        "on-primary": "#003739",
+                        "surface-container": "#1c2026",
+                        "primary": "#e9feff",
+                        "inverse-on-surface": "#2d3137",
+                        "error": "#ffb4ab",
+                        "secondary-fixed-dim": "#e9c400",
+                        "secondary": "#fff9ef",
+                        "on-tertiary-fixed": "#23005b",
+                        "on-secondary-container": "#725f00",
+                        "on-surface-variant": "#b9caca",
+                        "surface-container-high": "#262a31",
+                        "surface-bright": "#353940",
+                        "primary-fixed-dim": "#00dce5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(38, 42, 49, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .neon-glow {
+            box-shadow: 0 0 15px rgba(0, 245, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-surface-dim text-on-surface font-body selection:bg-primary-container selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-[#10141a]/80 backdrop-blur-xl flex justify-between items-center px-8 h-16 border-b border-outline-variant/10">
+<div class="flex items-center gap-8">
+<a href="index.html" class="text-xl font-bold tracking-tighter text-[#00f5ff] font-headline">FInsight</a>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-[#dfe2eb] opacity-70 hover:text-[#00f5ff] transition-colors duration-300 font-headline tracking-tight text-sm" href="index.html">Markets</a>
+<a class="text-[#dfe2eb] opacity-70 hover:text-[#00f5ff] transition-colors duration-300 font-headline tracking-tight text-sm" href="news.html">News</a>
+</div>
+</div>
+<div class="flex items-center gap-4" id="authActions">
+<a class="text-sm font-label text-on-surface/80 hover:text-primary-container transition-colors duration-200" href="login.html">Sign In</a>
+<a class="px-5 py-2 bg-primary-container text-on-primary font-bold text-xs rounded-full hover:brightness-110 transition-all shadow-lg shadow-primary-container/10 font-headline tracking-wide uppercase" href="signup.html">Sign Up</a>
+</div>
+</nav>
+
+<!-- Sidebar Navigation Shell -->
+<aside class="md:flex hidden fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-[#181c22] border-r border-outline-variant/10 flex-col py-6 z-40">
+  <div class="px-6 mb-8">
+    <h3 class="text-[#00f5ff] font-black font-headline tracking-widest text-[10px] uppercase mb-1">
+      FInsight Intelligence
+    </h3>
+    <p class="text-[#dfe2eb]/60 font-headline text-[8px] uppercase tracking-[0.2em]">
+      The Kinetic Observatory
+    </p>
+  </div>
+  <nav class="flex-1 space-y-1">
+    <a class="flex items-center gap-3 px-6 py-3 text-[#dfe2eb]/60 hover:bg-[#262a31] hover:text-[#00f5ff] transition-all" href="index.html">
+      <span class="material-symbols-outlined">visibility</span>
+      <span class="font-headline uppercase tracking-widest text-[10px] font-bold">Observatory</span>
+    </a>
+    <a class="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#00f5ff]/10 to-transparent text-[#00f5ff] border-l-4 border-[#00f5ff]" href="analysis.html">
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">insights</span>
+      <span class="font-headline uppercase tracking-widest text-[10px] font-bold">Analytics</span>
+    </a>
+    <a class="flex items-center gap-3 px-6 py-3 text-[#dfe2eb]/60 hover:bg-[#262a31] hover:text-[#00f5ff] transition-all" href="sector-charts.html">
+      <span class="material-symbols-outlined">leaderboard</span>
+      <span class="font-headline uppercase tracking-widest text-[10px] font-bold">Charts</span>
+    </a>
+  </nav>
+  <div class="mt-auto">
+    <a class="flex items-center gap-3 px-6 py-4 text-[#dfe2eb]/60 hover:text-[#00f5ff] transition-all border-t border-outline-variant/10" href="#">
+      <span class="material-symbols-outlined text-sm">help_outline</span>
+      <span class="font-headline uppercase tracking-widest text-[10px] font-bold">Help Center</span>
+    </a>
+  </div>
+</aside>
+<!-- Main Canvas -->
+<main class="md:ml-64 min-h-screen pt-16">
+<!-- TopAppBar Header Shell -->
+<header class="flex justify-between items-center px-8 py-6 w-full sticky top-16 z-30 bg-[#10141a]/80 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,245,255,0.03)]">
+<div class="flex flex-col">
+<div class="flex items-center gap-3">
+<h2 class="text-2xl font-headline font-extrabold tracking-tight text-on-surface">PHÂN TÍCH CHIẾN LƯỢC</h2>
+<span class="px-3 py-1 rounded-full bg-primary-container/10 border border-primary-container/20 text-[#00f5ff] text-[10px] font-bold tracking-widest font-label uppercase">
+                        KỊCH BẢN: TÍCH CỰC (65%)
+                    </span>
+</div>
+<p class="text-sm text-on-surface-variant font-label tracking-wide mt-1">19/04/2026 • Real-time Intelligence Engine</p>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/10 focus-within:border-primary-container/40 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant text-sm mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm p-0 w-48 text-on-surface placeholder:text-on-surface-variant/50" placeholder="Search markets..." type="text"/>
+</div>
+</div>
+</header>
+<!-- Content Content -->
+<div class="p-8 max-w-7xl mx-auto space-y-8">
+<!-- AI EXECUTIVE VERDICT Section -->
+<section class="relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary-container/5 via-transparent to-transparent"></div>
+<div class="glass-card p-8 rounded-xl border-l-4 border-primary-container neon-glow relative">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-[#00f5ff]">psychology</span>
+<h3 class="text-[#00f5ff] font-headline font-bold text-lg tracking-wider">AI EXECUTIVE VERDICT</h3>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="md:col-span-2 space-y-4">
+<p class="text-xl text-on-surface leading-relaxed font-headline">
+                                Tâm lý thị trường hiện tại đang hiển thị một trạng thái <span class="text-[#00f5ff] font-bold">tích lũy thông minh</span>. Mặc dù chỉ số chung có sự rung lắc nhẹ, nhưng tỷ trọng nắm giữ của các dòng tiền lớn vẫn duy trì ở mức cao kỷ lục.
+                            </p>
+<p class="text-on-surface-variant text-sm leading-relaxed max-w-2xl">
+                                Phân tích từ hệ thống cho thấy sự lệch pha giữa tâm lý đám đông và hành vi của index share đang tạo ra một vùng đệm an toàn. Các mô hình dự báo xác suất 65% thị trường sẽ tiếp tục đà tăng trưởng bền vững trong ngắn hạn.
+                            </p>
+</div>
+<div class="flex flex-col justify-center items-start md:items-end border-l border-outline-variant/10 md:pl-8">
+<p class="text-xs text-on-surface-variant font-label uppercase tracking-widest mb-1">Hành động khuyến nghị</p>
+<div class="text-3xl font-headline font-black text-[#00f5ff] tracking-tighter">TIẾP TỤC NẮM GIỮ</div>
+<p class="text-xs text-[#00f5ff]/60 mt-2">Duy trì tỷ trọng cổ phiếu: 75-80%</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Content Grid -->
+<div class="grid lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column: EVIDENCE -->
+<div class="lg:col-span-5 space-y-6">
+<div class="flex items-center justify-between mb-2">
+<h4 class="text-sm font-label font-bold text-on-surface-variant uppercase tracking-[0.2em]">BẰNG CHỨNG ĐỐI SOÁT (EVIDENCE)</h4>
+<span class="h-px flex-grow ml-4 bg-outline-variant/10"></span>
+</div>
+<!-- Evidence Card 1 -->
+<div class="surface-container-high p-6 rounded-xl space-y-4 hover:bg-surface-container-highest transition-colors duration-300">
+<div class="flex justify-between items-start">
+<div>
+<h5 class="font-headline font-bold text-on-surface">Phân kỳ Tâm lý (SFI Divergence)</h5>
+<p class="text-xs text-on-surface-variant mt-1">Chỉ số đo lường sự tương quan tâm lý</p>
+</div>
+<span class="flex items-center gap-1.5 px-2 py-1 rounded bg-error-container/20 text-error text-[10px] font-bold border border-error-container/30">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                                ALERT
+                            </span>
+</div>
+<div class="h-32 w-full bg-surface-container-low rounded-lg relative flex items-end px-2 pb-2 gap-1 overflow-hidden">
+<div class="flex-1 bg-primary-container/20 h-[60%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary-container/40 h-[75%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary-container/30 h-[65%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary-container/60 h-[90%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary-container/80 h-[80%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary-container h-[95%] rounded-t-sm relative">
+<div class="absolute -top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-primary-fixed rounded-full animate-pulse"></div>
+</div>
+<div class="flex-1 bg-primary-container/50 h-[70%] rounded-t-sm"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<p class="text-[10px] font-label font-bold text-on-surface/40 uppercase tracking-widest">SFI INDEX FLOW</p>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant italic">"Sự lệch pha 12% so với đường trung bình 20 ngày cho thấy áp lực bán ròng từ khối ngoại đã giảm dần."</p>
+</div>
+<!-- Evidence Card 2 -->
+<div class="surface-container-high p-6 rounded-xl space-y-4 hover:bg-surface-container-highest transition-colors duration-300">
+<div class="flex justify-between items-start">
+<div>
+<h5 class="font-headline font-bold text-on-surface">Dòng chảy Trụ cột (Sector Flow)</h5>
+<p class="text-xs text-on-surface-variant mt-1">Phân bổ vốn vào các nhóm ngành dẫn dắt</p>
+</div>
+<span class="flex items-center gap-1.5 px-2 py-1 rounded bg-primary-container/10 text-primary-fixed text-[10px] font-bold border border-primary-container/20">
+<span class="material-symbols-outlined text-[14px]">sync</span>
+                                STABLE FLOW
+                            </span>
+</div>
+<div class="space-y-3">
+<div class="space-y-1">
+<div class="flex justify-between text-[10px] font-label font-bold text-on-surface-variant mb-1">
+<span>BANKING &amp; FINANCE</span>
+<span>42%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[42%]"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-[10px] font-label font-bold text-on-surface-variant mb-1">
+<span>TECHNOLOGY</span>
+<span>28%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container w-[28%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: CONTEXT -->
+<div class="lg:col-span-7 space-y-8">
+<div class="flex items-center justify-between mb-2">
+<h4 class="text-sm font-label font-bold text-on-surface-variant uppercase tracking-[0.2em]">NGUYÊN NHÂN CỐT LÕI (CONTEXT)</h4>
+<span class="h-px flex-grow ml-4 bg-outline-variant/10"></span>
+</div>
+<div class="flex flex-wrap gap-3 mb-2">
+<span class="px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-[10px] font-bold tracking-widest text-on-surface">VĨ MÔ &amp; TIỀN TỆ</span>
+<span class="px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-[10px] font-bold tracking-widest text-on-surface">SẢN XUẤT &amp; HÀNG HÓA</span>
+<span class="px-4 py-1.5 rounded-full bg-surface-container-highest border border-outline-variant text-[10px] font-bold tracking-widest text-on-surface">BẤT ĐỘNG SẢN</span>
+</div>
+<div class="space-y-8">
+<div class="grid md:grid-cols-2 gap-8">
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+<h6 class="font-headline font-bold text-on-surface">Chính sách Tiền tệ</h6>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                                    Ngân hàng trung ương tiếp tục duy trì lãi suất ổn định, hỗ trợ thanh khoản cho hệ thống ngân hàng thương mại. Tín hiệu nới lỏng định lượng nhẹ đang dần lộ diện qua các phiên đấu thầu tín phiếu.
+                                </p>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary-container"></div>
+<h6 class="font-headline font-bold text-on-surface">Sản xuất &amp; PMI</h6>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                                    Chỉ số PMI tháng này đạt 52.4 điểm, mức cao nhất trong 6 tháng qua. Các đơn hàng xuất khẩu mới tăng mạnh từ thị trường Châu Âu và Mỹ, tạo nền tảng cho lợi nhuận doanh nghiệp sản xuất.
+                                </p>
+</div>
+</div>
+<div class="surface-container-low p-8 rounded-xl border border-outline-variant/5">
+<h6 class="font-headline font-bold text-on-surface mb-4">Chiến lược Tài sản Giai đoạn Tiếp theo</h6>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="p-4 rounded-lg bg-surface-container-high border-l-2 border-primary-container">
+<p class="text-[10px] font-label font-bold text-on-surface-variant uppercase mb-1">Ưu tiên 1</p>
+<p class="text-sm font-bold text-on-surface">Nhóm Ngân hàng Top-tier</p>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-high border-l-2 border-secondary-container">
+<p class="text-[10px] font-label font-bold text-on-surface-variant uppercase mb-1">Ưu tiên 2</p>
+<p class="text-sm font-bold text-on-surface">Hạ tầng KCN &amp; Logisitics</p>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-high border-l-2 border-tertiary-fixed">
+<p class="text-[10px] font-label font-bold text-on-surface-variant uppercase mb-1">Ưu tiên 3</p>
+<p class="text-sm font-bold text-on-surface">Năng lượng Tái tạo</p>
+</div>
+</div>
+</div>
+<div class="flex justify-end pt-4">
+<button class="flex items-center gap-3 px-8 py-4 rounded-xl bg-primary-container text-on-primary font-headline font-extrabold text-sm tracking-widest shadow-[0_10px_20px_rgba(0,245,255,0.15)] hover:scale-[1.02] active:scale-95 transition-all duration-300 uppercase">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">picture_as_pdf</span>
+                                XUẤT BÁO CÁO PDF (FULL DETAILS)
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Dashboard Visual Elements -->
+<div class="grid md:grid-cols-4 gap-6 pt-8">
+<div class="md:col-span-3 rounded-2xl overflow-hidden h-48 relative border border-outline-variant/5">
+<img alt="Market Background" class="w-full h-full object-cover opacity-40 mix-blend-luminosity" data-alt="Futuristic financial trading desk with multiple dark screens showing glowing cyan data visualizations and charts in a high-tech atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRZyLx-GpXbC04qwY1WeLSuRNGjqScBy17nMJp82pp2p2tqsZVT1CWDJ0cEt-yDZwu3aJZBIvZ-kkyvTROuTeQd2tXOHBe9I76vWtGhblJFP3IrBhecjgmYIazEh4LW7bGb_hm9AKHvhdszhVDTnOI_StGcaSyGVAFaaXM_SMxcHr7V1hDNiGmc2LkKgMjGrDXnJXBaNaPB7aTGI3dWK4SUTrbfZfv8wAcB6IsyHdfjXwWN9RCDCtun4NrN-DOkjeTgildr6uob9g"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim to-transparent"></div>
+<div class="absolute bottom-6 left-8">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container"></div>
+<span class="text-[10px] font-label font-bold text-primary-fixed uppercase tracking-widest">Global Correlation Check</span>
+</div>
+<h4 class="text-xl font-headline font-bold text-on-surface">Đồng thuận giữa các thị trường mới nổi tăng 18%</h4>
+</div>
+</div>
+<div class="rounded-2xl bg-surface-container-high p-6 flex flex-col justify-center items-center text-center space-y-2 border border-outline-variant/5">
+<span class="material-symbols-outlined text-secondary-container text-4xl mb-2">electric_bolt</span>
+<p class="text-[10px] font-label font-bold text-on-surface-variant uppercase tracking-widest">Efficiency Core</p>
+<p class="text-2xl font-headline font-black text-on-surface">98.4%</p>
+<p class="text-xs text-on-surface-variant">Prediction Accuracy</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-[#181c22]/90 backdrop-blur-xl flex justify-around items-center py-4 px-6 z-50">
+<a class="flex flex-col items-center gap-1 text-[#00f5ff]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">monitoring</span>
+<span class="text-[10px] font-medium">Charts</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-[#dfe2eb]/50" href="#">
+<span class="material-symbols-outlined">newspaper</span>
+<span class="text-[10px] font-medium">News</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-[#dfe2eb]/50" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</a>
+</nav>
+<script src="js/auth.js"></script>
+</body></html>

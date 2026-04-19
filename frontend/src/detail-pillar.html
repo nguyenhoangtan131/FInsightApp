@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FInsight | News Terminal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0b0e11;
+        color: #e2e8f0;
+      }
+      .neon-glow {
+        box-shadow: 0 0 15px rgba(0, 245, 255, 0.4);
+        border-color: #00f5ff !important;
+      }
+      .glass {
+        background: rgba(16, 20, 26, 0.8);
+        backdrop-filter: blur(10px);
+      }
+      .sfi-badge {
+        background: linear-gradient(90deg, #00f5ff 0%, #00a3ff 100%);
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #0b0e11;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #1e293b;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body class="p-6 custom-scrollbar">
+    <header class="flex justify-between items-center mb-8">
+      <div>
+        <h1 class="text-2xl font-bold tracking-tighter text-[#00F5FF]">
+          FINSIGHT <span class="text-slate-500 font-light">/ NEWS</span>
+        </h1>
+        <p class="text-xs text-slate-500 uppercase tracking-widest">
+          Real-time Sentiment Engine v2.4
+        </p>
+      </div>
+      <div class="flex gap-4">
+        <div class="text-right">
+          <p class="text-xs text-slate-500">Global SFI</p>
+          <p class="text-sm font-bold text-emerald-400">84.2 HIGH</p>
+        </div>
+        <div
+          class="w-10 h-10 rounded-full border border-slate-700 bg-slate-800 flex items-center justify-center text-[#00F5FF]"
+        >
+          T
+        </div>
+      </div>
+    </header>
+
+    <section class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <button
+        class="neon-glow glass border-2 p-4 rounded-xl text-left transition-all hover:scale-[1.02]"
+      >
+        <p
+          class="text-[10px] text-[#00F5FF] font-bold uppercase mb-1 tracking-tighter"
+        >
+          Trụ cột 01
+        </p>
+        <h3 class="text-lg font-bold">TÀI CHÍNH</h3>
+        <p class="text-xs text-slate-400 mt-2">124 tin mới / SFI 0.82</p>
+      </button>
+
+      <button
+        class="glass border border-slate-800 p-4 rounded-xl text-left opacity-60 hover:opacity-100 transition-all hover:border-slate-600"
+      >
+        <p class="text-[10px] text-slate-500 font-bold uppercase mb-1">
+          Trụ cột 02
+        </p>
+        <h3 class="text-lg font-bold uppercase text-slate-300">Sản xuất</h3>
+        <p class="text-xs text-slate-500 mt-2">86 tin mới / SFI 0.91</p>
+      </button>
+
+      <button
+        class="glass border border-slate-800 p-4 rounded-xl text-left opacity-60 hover:opacity-100 transition-all"
+      >
+        <p class="text-[10px] text-slate-500 font-bold uppercase mb-1">
+          Trụ cột 03
+        </p>
+        <h3 class="text-lg font-bold uppercase text-slate-300">Bất động sản</h3>
+        <p class="text-xs text-slate-500 mt-2">92 tin mới / SFI 0.35</p>
+      </button>
+
+      <button
+        class="glass border border-slate-800 p-4 rounded-xl text-left opacity-60 hover:opacity-100 transition-all"
+      >
+        <p class="text-[10px] text-slate-500 font-bold uppercase mb-1">
+          Trụ cột 04
+        </p>
+        <h3 class="text-lg font-bold uppercase text-slate-300">Tiêu dùng</h3>
+        <p class="text-xs text-slate-500 mt-2">68 tin mới / SFI 0.68</p>
+      </button>
+    </section>
+
+    <section class="flex gap-2 mb-8 overflow-x-auto pb-2 no-scrollbar">
+      <button
+        class="px-4 py-1.5 rounded-full bg-[#00F5FF] text-black text-xs font-bold whitespace-nowrap"
+      >
+        TẤT CẢ TÀI CHÍNH
+      </button>
+      <button
+        class="px-4 py-1.5 rounded-full border border-slate-700 text-slate-400 text-xs hover:border-[#00F5FF] hover:text-[#00F5FF] transition-all whitespace-nowrap uppercase"
+      >
+        Ngân hàng
+      </button>
+      <button
+        class="px-4 py-1.5 rounded-full border border-slate-700 text-slate-400 text-xs hover:border-[#00F5FF] hover:text-[#00F5FF] transition-all whitespace-nowrap uppercase"
+      >
+        Chứng khoán
+      </button>
+      <button
+        class="px-4 py-1.5 rounded-full border border-slate-700 text-slate-400 text-xs hover:border-[#00F5FF] hover:text-[#00F5FF] transition-all whitespace-nowrap uppercase"
+      >
+        Bảo hiểm
+      </button>
+      <button
+        class="px-4 py-1.5 rounded-full border border-slate-700 text-slate-400 text-xs hover:border-[#00F5FF] hover:text-[#00F5FF] transition-all whitespace-nowrap uppercase"
+      >
+        Tỷ giá & Vàng
+      </button>
+    </section>
+
+    <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div
+        class="glass border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-600 transition-all group"
+      >
+        <div class="h-40 bg-slate-800 relative overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1611974717482-5834827e5bd8?auto=format&fit=crop&w=800&q=80"
+            alt="news"
+            class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500"
+          />
+          <div
+            class="absolute top-3 left-3 px-2 py-1 sfi-badge rounded text-[10px] font-bold text-black uppercase"
+          >
+            SFI 0.94
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="flex justify-between items-center mb-3">
+            <span
+              class="text-[10px] text-[#00F5FF] font-bold uppercase tracking-widest"
+              >Ngân hàng</span
+            >
+            <span class="text-[10px] text-slate-500 italic"
+              >2 giờ trước • CafeF</span
+            >
+          </div>
+          <h4
+            class="text-base font-semibold leading-tight mb-3 group-hover:text-[#00F5FF] transition-colors line-clamp-2"
+          >
+            Lãi suất huy động tiếp tục giảm sâu, dòng tiền có dấu hiệu dịch
+            chuyển sang chứng khoán
+          </h4>
+          <p class="text-xs text-slate-500 line-clamp-2 mb-4">
+            Theo báo cáo mới nhất, khối lượng giao dịch tại các sàn chứng khoán
+            tăng 15% ngay sau khi các ngân hàng thương mại công bố biểu lãi suất
+            mới...
+          </p>
+          <div
+            class="flex justify-between items-center pt-4 border-t border-slate-800"
+          >
+            <button
+              class="text-[10px] font-bold uppercase hover:text-[#00F5FF]"
+            >
+              Đọc báo gốc →
+            </button>
+            <button
+              class="text-[10px] font-bold uppercase bg-slate-800 px-3 py-1 rounded hover:bg-[#00F5FF] hover:text-black transition-all"
+            >
+              AI Phân tích
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="glass border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-600 transition-all group"
+      >
+        <div class="h-40 bg-slate-800 relative overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=800&q=80"
+            alt="news"
+            class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500"
+          />
+          <div
+            class="absolute top-3 left-3 px-2 py-1 bg-red-500 rounded text-[10px] font-bold text-white uppercase"
+          >
+            SFI 0.22
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="flex justify-between items-center mb-3">
+            <span
+              class="text-[10px] text-red-400 font-bold uppercase tracking-widest"
+              >Thị trường Vốn</span
+            >
+            <span class="text-[10px] text-slate-500 italic"
+              >4 giờ trước • VnExpress</span
+            >
+          </div>
+          <h4
+            class="text-base font-semibold leading-tight mb-3 group-hover:text-red-400 transition-colors line-clamp-2"
+          >
+            Áp lực tỷ giá đè nặng, khối ngoại liên tục bán ròng trong 5 phiên
+            liên tiếp
+          </h4>
+          <p class="text-xs text-slate-500 line-clamp-2 mb-4">
+            Dòng vốn ngoại đang có xu hướng rút khỏi các thị trường mới nổi do
+            đồng USD mạnh lên, gây áp lực trực tiếp tới VN-Index...
+          </p>
+          <div
+            class="flex justify-between items-center pt-4 border-t border-slate-800"
+          >
+            <button class="text-[10px] font-bold uppercase hover:text-red-400">
+              Đọc báo gốc →
+            </button>
+            <button
+              class="text-[10px] font-bold uppercase bg-slate-800 px-3 py-1 rounded hover:bg-red-500 hover:text-white transition-all"
+            >
+              AI Phân tích
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="glass border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-600 transition-all group"
+      >
+        <div class="h-40 bg-slate-800 relative overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1526303328184-bfd448f0d630?auto=format&fit=crop&w=800&q=80"
+            alt="news"
+            class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500"
+          />
+          <div
+            class="absolute top-3 left-3 px-2 py-1 bg-yellow-500 rounded text-[10px] font-bold text-black uppercase"
+          >
+            SFI 0.55
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="flex justify-between items-center mb-3">
+            <span
+              class="text-[10px] text-yellow-500 font-bold uppercase tracking-widest"
+              >Tỷ giá</span
+            >
+            <span class="text-[10px] text-slate-500 italic"
+              >6 giờ trước • Báo Đầu tư</span
+            >
+          </div>
+          <h4
+            class="text-base font-semibold leading-tight mb-3 group-hover:text-yellow-500 transition-colors line-clamp-2"
+          >
+            Ngân hàng Nhà nước có động thái mới điều hành tỷ giá trung tâm
+          </h4>
+          <p class="text-xs text-slate-500 line-clamp-2 mb-4">
+            Các chuyên gia nhận định đây là bước đi thận trọng nhằm cân bằng
+            giữa mục tiêu tăng trưởng và kiểm soát lạm phát cuối năm...
+          </p>
+          <div
+            class="flex justify-between items-center pt-4 border-t border-slate-800"
+          >
+            <button
+              class="text-[10px] font-bold uppercase hover:text-yellow-500"
+            >
+              Đọc báo gốc →
+            </button>
+            <button
+              class="text-[10px] font-bold uppercase bg-slate-800 px-3 py-1 rounded hover:bg-yellow-500 hover:text-black transition-all"
+            >
+              AI Phân tích
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,489 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>KINETIC | News Intelligence Feed</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-bright": "#353940",
+              "on-error-container": "#ffdad6",
+              "on-tertiary-fixed": "#23005b",
+              "surface-tint": "#00dce5",
+              "surface-variant": "#31353c",
+              "on-secondary": "#3a3000",
+              "tertiary-container": "#e5d7ff",
+              "secondary-container": "#ffdb3c",
+              "surface-container-low": "#181c22",
+              "on-primary-container": "#006c71",
+              "on-primary": "#003739",
+              primary: "#e9feff",
+              "surface-container-lowest": "#0a0e14",
+              "primary-fixed-dim": "#00dce5",
+              "secondary-fixed-dim": "#e9c400",
+              secondary: "#fff9ef",
+              "on-secondary-container": "#725f00",
+              "on-error": "#690005",
+              "secondary-fixed": "#ffe16d",
+              outline: "#849495",
+              "surface-dim": "#10141a",
+              "primary-container": "#00f5ff",
+              "error-container": "#93000a",
+              background: "#10141a",
+              "inverse-surface": "#dfe2eb",
+              surface: "#10141a",
+              "on-background": "#dfe2eb",
+              "on-tertiary-container": "#751fff",
+              "on-surface-variant": "#b9caca",
+              "on-tertiary": "#3c0090",
+              error: "#ffb4ab",
+              "inverse-primary": "#00696e",
+              "on-secondary-fixed-variant": "#544600",
+              "inverse-on-surface": "#2d3137",
+              "tertiary-fixed-dim": "#d1bcff",
+              "on-primary-fixed": "#002021",
+              "surface-container-highest": "#31353c",
+              "on-tertiary-fixed-variant": "#5700c9",
+              "on-surface": "#dfe2eb",
+              "tertiary-fixed": "#e9ddff",
+              "surface-container-high": "#262a31",
+              "primary-fixed": "#63f7ff",
+              "on-secondary-fixed": "#221b00",
+              "on-primary-fixed-variant": "#004f53",
+              tertiary: "#fef8ff",
+              "outline-variant": "#3a494a",
+              "surface-container": "#1c2026",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            fontFamily: {
+              headline: ["Manrope"],
+              body: ["Inter"],
+              label: ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .glass-card {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container"
+  >
+    <nav
+      class="fixed top-0 left-0 w-full z-50 bg-[#10141a]/80 backdrop-blur-xl flex justify-between items-center px-8 h-16 border-b border-outline-variant/10"
+    >
+      <div class="flex items-center gap-8">
+        <a
+          href="index.html"
+          class="text-xl font-bold tracking-tighter text-[#00f5ff] font-headline"
+          >FInsight</a
+        >
+        <div class="hidden md:flex gap-6 items-center">
+          <a
+            class="text-[#dfe2eb] opacity-70 hover:text-[#00f5ff] transition-colors duration-300 font-headline tracking-tight text-sm"
+            href="index.html"
+            >Markets</a
+          >
+          <a
+            class="text-[#00f5ff] border-b-2 border-[#00f5ff] pb-1 font-headline tracking-tight text-sm drop-shadow-[0_0_8px_rgba(0,245,255,0.4)]"
+            href="#"
+            >News</a
+          >
+        </div>
+      </div>
+      <div class="flex items-center gap-4" id="authActions">
+        <a
+          class="text-sm font-label text-on-surface/80 hover:text-primary-container transition-colors duration-200"
+          href="login.html"
+          >Sign In</a
+        >
+        <a
+          class="px-5 py-2 bg-primary-container text-on-primary font-bold text-xs rounded-full hover:brightness-110 transition-all shadow-lg shadow-primary-container/10 font-headline tracking-wide uppercase"
+          href="signup.html"
+          >Sign Up</a
+        >
+      </div>
+    </nav>
+    <div class="flex">
+      <main class="flex-1 min-h-screen pt-24 px-8 pb-12 bg-surface">
+        <section class="mb-12">
+          <div class="flex items-baseline justify-between mb-8">
+            <div>
+              <h1
+                class="text-4xl font-extrabold font-headline tracking-tight text-on-surface mb-2"
+              >
+                Market Intelligence
+              </h1>
+              <p class="text-on-surface-variant font-medium">
+                Real-time curated news feed with neural sentiment scoring.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div
+              id="sector-card-finance"
+              onclick="updateHashtags('finance')"
+              class="relative group cursor-pointer overflow-hidden rounded-xl h-32 bg-surface-container-low border border-outline-variant/10 hover:border-primary-container/30 transition-all duration-500 ring-2 ring-cyan-400"
+            >
+              <div
+                class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity bg-cover bg-center"
+                style="
+                  background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDnlkWTIJJfIQCfTKYruKu0wRkOrKCY8GMMKut9O4qjkr6RAhTHICNsw7qYWnDqAsUosS7Ieat7ZA10MtMwbsBRDFkl7509Fah1N9LiviZ7ys7ZVA7TJGoJUUBvXdFbUb5IR2C6s0s3VjKLFnevbGtUymJpDq7_nVfattlmp2_qyK6ca9aftasuhHZF4zH-VpoKcebVPEn4tG3pKHAIy9MTMFGhbQhW0HOCrwGES4aWmuRxUnfXtm-Wwx5Au_v_-QO0KlVXku5gqXw&quot;);
+                "
+              ></div>
+              <div class="relative h-full flex flex-col justify-end p-5 z-10">
+                <h3 class="font-headline font-bold text-lg text-on-surface">
+                  01. TÀI CHÍNH
+                </h3>
+                <p class="text-xs text-cyan-400 font-medium line-clamp-1">
+                  Điều tiết dòng tiền & lãi suất.
+                </p>
+              </div>
+            </div>
+            <div
+              id="sector-card-production"
+              onclick="updateHashtags('production')"
+              class="relative group cursor-pointer overflow-hidden rounded-xl h-32 bg-surface-container-low border border-outline-variant/10 hover:border-primary-container/30 transition-all duration-500"
+            >
+              <div
+                class="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity bg-cover bg-center"
+                style="
+                  background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBZQATwJCuFjZ1YO5qUeobLe2w7XRlhI-gPmTqbd1tE151FQUOJJzLdcq5VGkWJLkcJDdWA4CoKtZ2gVpBLibhgTSZMk7aprOVP5hk3LkTR6lFLQgoLH1h8cxOavvoL05g2h8y6-ceKvmFIjgOivdOnc-p0W3GfzYXhLvMK7xl9TcYH7KrobJcxhJvMD4EYdRbYss5k6ky2j_SKyFeFt-vm-XNrKcj50eXbvMHXo5rbI2Rfsmcq6Gh2jCecE7n1Eu2rl5SRitSN2SY&quot;);
+                "
+              ></div>
+              <div class="relative h-full flex flex-col justify-end p-5 z-10">
+                <h3 class="font-headline font-bold text-lg text-on-surface">
+                  02. SẢN XUẤT
+                </h3>
+                <p class="text-xs text-slate-400 font-medium line-clamp-1">
+                  Xương sống công nghiệp & hạ tầng.
+                </p>
+              </div>
+            </div>
+            <div
+              id="sector-card-realestate"
+              onclick="updateHashtags('realestate')"
+              class="relative group cursor-pointer overflow-hidden rounded-xl h-32 bg-surface-container-low border border-outline-variant/10 hover:border-primary-container/30 transition-all duration-500"
+            >
+              <div
+                class="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity bg-cover bg-center"
+                style="
+                  background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCXdbrcYc3IEDXV6k065nZLi06E-wFhHycLeLcYLVe5OuRkOpho0OhWHRyYeFkYGosH3eTHsilIdlQeClRHlRywnFSGOukcrQRFD-MtQkNBXqki7iccOfjqhcqBNq4famaULE7sNso5XLYH8XrGeKKU6NGHA1ilGUM8S68sBFFAgj_LumHOgVSLrJaQzOzA-l3-D8Zzge2p69ilvCY5Hja8ofVUK1ef7rK9JLsZHLNo3aHorw2dqq2MNkGqRCnYv68oy2k9f5-RpOI&quot;);
+                "
+              ></div>
+              <div class="relative h-full flex flex-col justify-end p-5 z-10">
+                <h3 class="font-headline font-bold text-lg text-on-surface">
+                  03. BẤT ĐỘNG SẢN
+                </h3>
+                <p class="text-xs text-slate-400 font-medium line-clamp-1">
+                  Tài sản đảm bảo & hấp thụ vốn lớn.
+                </p>
+              </div>
+            </div>
+            <div
+              id="sector-card-consumption"
+              onclick="updateHashtags('consumption')"
+              class="relative group cursor-pointer overflow-hidden rounded-xl h-32 bg-surface-container-low border border-outline-variant/10 hover:border-primary-container/30 transition-all duration-500"
+            >
+              <div
+                class="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity bg-cover bg-center"
+                style="
+                  background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDCDvWFQLGUcuBkpTaSZJP9koCVooqZmhO3HgQI6emEqT4JX5WQAghIt9mWTU4oPnjGK0881YgEmwB5pErd1IPAeZlkuBcBH_bVMErb9Jq--Ataxog42naAF5-DvDwBtHGjE0gzMqUGt_c41Y0bn2ZPxpA1iaz-ee2kOjVCe8CJoggCYs2RIW2eKxXXb0i2JOtYS1dwG7WDho6VMugtNk1wM39JJEqfn93KUDUzFFgRVDxQp5bMpF3QW7Zo17YqpB5oh2X1tXgfQsw&quot;);
+                "
+              ></div>
+              <div class="relative h-full flex flex-col justify-end p-5 z-10">
+                <h3 class="font-headline font-bold text-lg text-on-surface">
+                  04. TIÊU DÙNG
+                </h3>
+                <p class="text-xs text-slate-400 font-medium line-clamp-1">
+                  Phản ánh sức mua & đời sống dân sinh.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            id="hashtag-container"
+            class="flex flex-wrap gap-2 hide-scrollbar"
+          >
+            <button
+              class="px-5 py-2 rounded-full bg-primary-container text-on-primary font-bold text-xs tracking-wide hover:shadow-[0_0_12px_rgba(0,245,255,0.4)] transition-all duration-200"
+            >
+              #Ngân hàng (VCB)
+            </button>
+            <button
+              class="px-5 py-2 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high hover:text-cyan-400 border border-outline-variant/20 font-medium text-xs tracking-wide transition-all duration-200"
+            >
+              #Chứng khoán (SSI)
+            </button>
+            <button
+              class="px-5 py-2 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high hover:text-cyan-400 border border-outline-variant/20 font-medium text-xs tracking-wide transition-all duration-200"
+            >
+              #Bảo hiểm & Quỹ (BVH)
+            </button>
+          </div>
+        </section>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-8 min-h-[1000px]"
+        >
+          <article
+            class="md:col-span-2 md:row-span-2 group relative flex flex-col rounded-2xl overflow-hidden bg-surface-container-low transition-all duration-500 hover:-translate-y-2"
+          >
+            <div class="absolute inset-0 z-0">
+              <img
+                alt="Global connectivity"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5C_dEaUXbSf19F-Dziwh2P78ROmr7G1kCPLo1D9wqCppCL8GCZ_w_D1yZLYigQywQCz6n1c1aqTHtMXCZWqRvmsJWBMZmpudQJ2fCyRxmP5UC21dzn6wD6rh7FSliUHX0rDemuovfEbIDh8oLcw3vZF4U7ztj_2zGcykFOyVUT9i9lhuVf83u_HW89D0drxpCI7EHokLwN2A23n2zG_7bjGrzA3OsZ-jqWt3zEoeI1ZywooG1NfCjvyUXGm3kyRjy5oBOBRvdPeM"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent"
+              ></div>
+            </div>
+            <div
+              class="relative z-10 mt-auto p-10 flex flex-col justify-end h-full"
+            >
+              <div class="flex items-center gap-4 mb-6">
+                <span
+                  class="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded"
+                  >SFI: 0.67</span
+                >
+                <span class="text-[10px] font-medium text-slate-400"
+                  >1 HOUR AGO</span
+                >
+              </div>
+              <h2
+                class="text-4xl font-bold font-headline text-on-surface leading-tight mb-6 group-hover:text-primary-container transition-colors"
+              >
+                Emerging Markets Pivot: The New Corridor of Growth
+              </h2>
+              <p class="text-slate-300 text-lg leading-relaxed mb-8 font-body">
+                Data indicates a significant capital rotation toward Southeast
+                Asian manufacturing hubs as traditional trade routes undergo
+                structural realignment.
+              </p>
+              <div class="flex items-center gap-4">
+                <button
+                  class="flex items-center gap-2 text-sm font-bold text-primary-container"
+                >
+                  <span>READ FULL ANALYSIS</span>
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    data-icon="arrow_forward"
+                    >arrow_forward</span
+                  >
+                </button>
+                <span class="h-px w-12 bg-slate-700"></span>
+                <span
+                  class="text-xs font-semibold text-slate-400 uppercase tracking-widest"
+                  >Global Intelligence Unit</span
+                >
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="md:col-span-2 group relative flex flex-col rounded-2xl overflow-hidden bg-surface-container-low transition-all duration-500 hover:-translate-y-2 h-full min-h-[480px]"
+          >
+            <div class="absolute inset-0 z-0">
+              <img
+                alt="Financial district"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVsUMVBTNGgvNLmDh8GPUiMv5aBGSAh5h34tIw7XnbkZ8CKsH8Sx2Zu3Nh90YYL3P7Q0Qkv_ZLJMU0IMqN6Iu0idAIQdXxCiONW95g3rTMLZKCaEkjmrIGCf28w6e0tmoBHfBAy2qTCmM-xcDaTsImXVgeyG8hLzu6OAjsVePY1JkPthP4ts5AJD6pFDn-14BcUacARHUdCSSUlLfzVSnWevVXmiILv0a-42VDjZ5IdtlnSYuohswuSCs7i2xZTeSaPXqi1xxqQgw"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent"
+              ></div>
+            </div>
+            <div class="relative z-10 mt-auto p-8">
+              <div class="flex items-center justify-between mb-4">
+                <span
+                  class="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded"
+                  >SFI: 0.84</span
+                >
+                <span class="text-[10px] font-medium text-slate-400"
+                  >2 MIN AGO</span
+                >
+              </div>
+              <h2
+                class="text-2xl font-bold font-headline text-on-surface leading-tight mb-4 group-hover:text-primary-container transition-colors"
+              >
+                Federal Reserve Holds Interest Rates Amid Inflation Signals
+              </h2>
+              <p class="text-slate-300 text-sm line-clamp-2 mb-6 font-body">
+                The central bank maintained its benchmark rate while signaling a
+                cautious approach to future adjustments, impacting bond yields
+                across major markets.
+              </p>
+              <div
+                class="flex items-center gap-3 pt-6 border-t border-slate-700/30"
+              >
+                <div
+                  class="w-6 h-6 rounded-full bg-surface-bright flex items-center justify-center text-[10px] font-bold text-on-surface"
+                >
+                  WS
+                </div>
+                <span
+                  class="text-xs font-semibold text-slate-400 uppercase tracking-widest"
+                  >WALL STREET INSIDER</span
+                >
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="group relative flex flex-col rounded-2xl overflow-hidden bg-surface-container-low transition-all duration-500 hover:-translate-y-2 h-full min-h-[480px]"
+          >
+            <div class="absolute inset-0 z-0">
+              <img
+                alt="Technology background"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5I4Yl8qmBVRYOvAPmu8exFdYPZAr5dcIJWJEd3ndbOfYfWE4Rz96k9-ghwUIkk0oMeHQeFqbGZVF2QtYLqLXE_oQYnojcCOBR8z6Vsu2LBamaQEv7VYCx9JKaqz8PZQ1PWYIhQMyDtU_fQot-NvcvE6MeZ_bL_bdGCd9xS374m8dLVIwW6MR8ejlpc3FWUawDpsecuEVd3HyVa6WdW9o2oS9ee8W_dQ5Itqzl5exEa3INOle3dTbk4x_YfnukeWHt2whtD6Ajgic"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent"
+              ></div>
+            </div>
+            <div class="relative z-10 mt-auto p-8">
+              <div class="flex items-center justify-between mb-4">
+                <span
+                  class="text-[10px] font-black uppercase tracking-[0.2em] text-secondary-container bg-secondary-container/10 px-2 py-1 rounded"
+                  >SFI: 0.42</span
+                >
+                <span class="text-[10px] font-medium text-slate-400"
+                  >14 MIN AGO</span
+                >
+              </div>
+              <h2
+                class="text-xl font-bold font-headline text-on-surface leading-tight mb-4 group-hover:text-primary-container transition-colors"
+              >
+                Cybersecurity Breach Hits Transaction Processor
+              </h2>
+              <p class="text-slate-300 text-xs line-clamp-2 mb-6 font-body">
+                Analysts monitoring potential leaks as firm scrambles to patch
+                zero-day vulnerability.
+              </p>
+              <div
+                class="flex items-center gap-3 pt-6 border-t border-slate-700/30"
+              >
+                <div
+                  class="w-6 h-6 rounded-full bg-surface-bright flex items-center justify-center text-[10px] font-bold text-on-surface"
+                >
+                  RT
+                </div>
+                <span
+                  class="text-xs font-semibold text-slate-400 uppercase tracking-widest"
+                  >REUTERS TECH</span
+                >
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="group relative flex flex-col rounded-2xl overflow-hidden bg-surface-container-low transition-all duration-500 hover:-translate-y-2 h-full min-h-[480px]"
+          >
+            <div class="absolute inset-0 z-0">
+              <img
+                alt="Corporate office"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8QBfkvvkDra2ZRYjdNfOlsJSDqnmr-IfuwPFa1AIn5dSMpjXioybKR7HbSLmgldbPvokwXG8wcVpzJMcLbzaqyhO0hZ5OUwOhyG5NtaiSNtzV0jOgWbjFGLFi-rXf5gPhFzjbi5onu0ky0RChfZ2TIGifthUlzfEA9g8akNBKhRTjOGYod0FBCisFysa0PmCmCQZkJNJLyWYJppNZ8FbeB4aDwCq9FiwU60M_pIZRZVqiH1pZHqJSlbmWPiPNL5haG14GWtWFfXk"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent"
+              ></div>
+            </div>
+            <div class="relative z-10 mt-auto p-8">
+              <div class="flex items-center justify-between mb-4">
+                <span
+                  class="text-[10px] font-black uppercase tracking-[0.2em] text-secondary-container bg-secondary-container/10 px-2 py-1 rounded"
+                  >SFI: -0.12</span
+                >
+                <span class="text-[10px] font-medium text-slate-400"
+                  >2 HOURS AGO</span
+                >
+              </div>
+              <h2
+                class="text-xl font-bold font-headline text-on-surface leading-tight mb-4 group-hover:text-primary-container transition-colors"
+              >
+                Real Estate Remote Work Fallout
+              </h2>
+              <p class="text-slate-300 text-xs line-clamp-2 mb-6 font-body">
+                Office vacancies hit 10-year high, forcing zoning model
+                reconsiderations.
+              </p>
+              <div
+                class="flex items-center gap-3 pt-6 border-t border-slate-700/30"
+              >
+                <div
+                  class="w-6 h-6 rounded-full bg-surface-bright flex items-center justify-center text-[10px] font-bold text-on-surface"
+                >
+                  BB
+                </div>
+                <span
+                  class="text-xs font-semibold text-slate-400 uppercase tracking-widest"
+                  >BLOOMBERG NEWS</span
+                >
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="mt-16 flex justify-center">
+          <button
+            class="flex items-center gap-3 px-10 py-4 bg-surface-container-high border border-outline-variant/30 text-on-surface font-bold text-sm rounded-full hover:bg-surface-container-highest transition-all group"
+          >
+            <span>LOAD MORE INTELLIGENCE</span>
+            <span
+              class="material-symbols-outlined text-sm group-hover:translate-y-1 transition-transform"
+              data-icon="expand_more"
+              >expand_more</span
+            >
+          </button>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/news.js"></script>
+
+    <script src="js/auth.js"></script>
+  </body>
+</html>
