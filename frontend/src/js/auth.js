@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         setTimeout(() => {
-          window.location.href = "index.html";
+          window.location.href = "../index.html";
         }, 1000);
       } else {
         alert("Mật khẩu/tài khoản sai. Vui lòng nhập admin / 123");

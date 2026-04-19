@@ -144,7 +144,7 @@
           >
           <a
             class="text-[#dfe2eb] opacity-70 hover:text-[#00f5ff] transition-colors duration-300 font-headline tracking-tight text-sm"
-            href="news.html"
+            href="pages/news.html"
             >News</a
           >
         </div>
@@ -152,12 +152,12 @@
       <div class="flex items-center gap-4" id="authActions">
         <a
           class="text-sm font-label text-on-surface/80 hover:text-primary-container transition-colors duration-200"
-          href="login.html"
+          href="pages/login.html"
           >Sign In</a
         >
         <a
           class="px-5 py-2 bg-primary-container text-on-primary font-bold text-xs rounded-full hover:brightness-110 transition-all shadow-lg shadow-primary-container/10 font-headline tracking-wide uppercase"
-          href="signup.html"
+          href="pages/signup.html"
           >Sign Up</a
         >
       </div>
@@ -181,7 +181,7 @@
       <nav class="flex-1 space-y-1">
         <a
           class="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#00f5ff]/10 to-transparent text-[#00f5ff] border-l-4 border-[#00f5ff]"
-          href="/"
+          href="index.html"
         >
           <span
             class="material-symbols-outlined"
@@ -195,7 +195,7 @@
         </a>
         <a
           class="flex items-center gap-3 px-6 py-3 text-[#dfe2eb]/60 hover:bg-[#262a31] hover:text-[#00f5ff] transition-all"
-          href="analysis.html"
+          href="pages/analysis.html"
         >
           <span class="material-symbols-outlined">insights</span>
           <span
@@ -205,7 +205,7 @@
         </a>
         <a
           class="flex items-center gap-3 px-6 py-3 text-[#dfe2eb]/60 hover:bg-[#262a31] hover:text-[#00f5ff] transition-all"
-          href="sector-charts.html"
+          href="pages/sector-charts.html"
         >
           <span class="material-symbols-outlined">leaderboard</span>
           <span
@@ -341,17 +341,14 @@
             </p>
           </div>
 
-          <!-- Active Action Panel (Hidden by default) -->
           <div
             id="action-panel"
             class="hidden glass-panel rounded-xl border-l-2 border-primary-container p-6 w-full neon-glow shadow-[0_20px_40px_rgba(0,245,255,0.06)] relative overflow-hidden group"
           >
-            <!-- Ambient background glow inside panel -->
             <div
               class="absolute -top-10 -right-10 w-32 h-32 bg-primary-container/10 rounded-full blur-2xl"
             ></div>
 
-            <!-- Header -->
             <div class="mb-4 relative z-10">
               <h3
                 class="font-headline text-lg font-bold text-on-surface tracking-tight"
@@ -396,10 +393,9 @@
               </div>
             </div>
 
-            <!-- Actions -->
             <div class="flex flex-col gap-3 relative z-10 mt-6">
               <button
-                onclick="window.location.href = 'sector-charts.html'"
+                onclick="window.location.href = 'pages/sector-charts.html'"
                 class="w-full flex items-center justify-between p-3 rounded-lg bg-surface-container-highest/50 hover:bg-surface-container-highest border border-transparent hover:border-outline-variant/20 transition-all duration-200 group/btn"
               >
                 <div class="flex items-center gap-3">
@@ -422,7 +418,7 @@
               </button>
 
               <button
-                onclick="window.location.href='analysis.html'"
+                onclick="window.location.href = 'pages/analysis.html'"
                 class="w-full flex items-center justify-between p-3 rounded-lg bg-surface-container-highest/50 hover:bg-surface-container-highest border border-transparent hover:border-outline-variant/20 transition-all duration-200 group/btn cursor-pointer"
               >
                 <div class="flex items-center gap-3">
@@ -449,7 +445,6 @@
               </button>
             </div>
 
-            <!-- Footer Action -->
             <div
               class="mt-5 pt-4 border-t border-outline-variant/15 flex justify-end relative z-10"
             >
@@ -463,7 +458,7 @@
           </div>
         </div>
       </div>
-      <!-- Trending Intelligence -->
+
       <section>
         <div class="flex justify-between items-center mb-8">
           <h2 class="text-2xl font-black font-headline tracking-tight">
@@ -477,7 +472,6 @@
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- News Card 1 (Large) -->
           <div
             class="lg:col-span-2 group relative h-[400px] rounded-2xl overflow-hidden cursor-pointer border border-outline-variant/10 shadow-2xl shadow-black/40"
           >
@@ -526,7 +520,7 @@
               </p>
             </div>
           </div>
-          <!-- News Card 2 (Standard) -->
+
           <div
             class="group relative h-[400px] rounded-2xl overflow-hidden cursor-pointer border border-outline-variant/10"
           >
@@ -564,7 +558,7 @@
         </div>
       </section>
     </main>
-    <!-- BottomNavBar (Mobile Only) -->
+
     <nav
       class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container/90 backdrop-blur-xl flex justify-around items-center h-16 border-t border-outline-variant/10 z-50"
     >
